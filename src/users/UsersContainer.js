@@ -1,27 +1,38 @@
 // import Users from './Users'
 // import User from './User'
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
-import NewUserForm from './NewUserForm'
-import addUser from '../actions/addUser'
+import UserForm from './UserForm'
+import Users from './Users'
+import User from './User'
 import fetchUsers from '../actions/fetchUsers'
+import { Component } from 'react'
 
-function UsersContainer(){
+class UsersContainer extends Component{
+
+  componentDidMount = () => {
+    this.props.fetchUsers()
+  }
   
+  render() {
     return (
-        <>
+      <>
         <p>UsersContainer</p>
-          {/* <Switch> */}
-            <Route path="/users/signup">
-              <NewUserForm />
+          <Switch>
+            <Route path={'/users/login'}>
+              <UserForm />
             </Route>
-            {/* <Route exact path="/lists">
+            <Route path={'/users/signup'}>
+              <UserForm />
+            </Route>
+            <Route exact path="/users">
               <Users />
-            </Route> */}
-            {/* <Route path='/users/:id' render={(routerProps) => <User {...routerProps}/>}/> */}
-          {/* </Switch> */}
-        </>
-      )
+            </Route>
+            <Route path='/users/:id' render={(routerProps) => <User {...routerProps}/>}/>
+          </Switch>
+      </>
+    )
+  }
 }
 
 // export default UsersContainer

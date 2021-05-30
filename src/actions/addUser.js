@@ -1,4 +1,4 @@
-export default function addUser(user) {
+export default function addUser(user, history) {
     debugger
     return function (dispatch){
         fetch('http://localhost:3000/users/', {
@@ -7,6 +7,9 @@ export default function addUser(user) {
             body: JSON.stringify({user})
         })
         .then(r => r.json())
-        .then(u => {dispatch({type: 'ADD_USER', payload: u})})
+        .then(u => {
+            dispatch({type: 'ADD_USER', payload: u})
+            history.push(`/users/${u.id}`)
+        })
     }
 }

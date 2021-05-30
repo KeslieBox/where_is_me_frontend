@@ -1,4 +1,6 @@
 import { NavLink } from 'react-router-dom';
+import {connect} from 'react-redux'
+import showUser from './actions/showUser'
 
 const link = {
   width: '100px',
@@ -8,8 +10,14 @@ const link = {
   color: 'white',
 }
 
+// const userId = () => {
+//   debugger
+
+// }
+
 
 const NavBar = () => {
+  // need to create conditional for which links to show
   return (
     <div className='navbar'>
       <NavLink
@@ -21,7 +29,13 @@ const NavBar = () => {
           style={link}
       >Signup</NavLink>
       <NavLink
-          to="/profile"
+          to="/users/login"
+          style={link}
+      >Login</NavLink>
+      <NavLink
+        // need to create route for show page, /users/:id
+          // to={`/users/${userId()}`}
+          to='/profile'
           style={link}
       >Profile</NavLink>
       <NavLink
@@ -32,4 +46,5 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+
+export default connect(null, {showUser})(NavBar)
