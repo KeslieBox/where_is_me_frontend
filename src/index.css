@@ -1,0 +1,56 @@
+.navbar {
+    position: relative;
+    display: -webkit-box;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    font-family: monospace;
+    text-align: center;
+    /* background: linear-gradient(60deg, magenta, #3618d8d1); */
+    /* background: linear-gradient(358deg, #ff007d, #1b18d8d1);
+    height: 47px; */
+    /* background: linear-gradient(530deg, #ff007d, #1b18d86e); */
+    /* hard lines */
+    /* background: linear-gradient(355deg, #ff007d, #1b18d86e); */
+    /* soft lines */
+    /* background: linear-gradient(232deg, #ff007d, #1b18d8); */
+    /* slow gradient, no lines */
+    /* background: linear-gradient(269deg, #ff007d, #1b18d8); */
+    height: 47px;
+    padding-top: 0px;
+}
+
+element.style {
+    width: 100px;
+    padding: 12px;
+    /* margin: 0px 6px 6px; */
+    text-decoration: none;
+    color: white;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+    display: table-cell;
+}
+
+body {
+    margin: 0;
+    font-family: monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    height: 52px;
+    color: white;
+    text-align: left;
+    /* soft lines magenta */
+    background: linear-gradient(526deg, #1c01f9, #df01fa);
+    /* slow gradient no lines magenta */
+    /* background: linear-gradient(450deg, #1c01f9, #df01fa); */
+    /* hard lines */
+    /* background: linear-gradient(358deg, #ff007d, #1b18d8d1); */
+    /* soft lines */
+    /* background: linear-gradient(232deg, #ff007d, #1b18d8); */
+    /* slow gradient, no lines */
+    /* background: linear-gradient(269deg, #ff007d, #1b18d8); */
+}

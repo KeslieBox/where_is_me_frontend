@@ -1,10 +1,14 @@
-import React, {Component} from 'react'
+import NavBar from './NavBar'
+import UsersContainer from './users/UsersContainer'
+// import NewUserForm from './users/NewUserForm'
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <>
+      <NavBar />
+      <UsersContainer />
+      {/* <NewUserForm /> */}
+    </>
   );
 }
 
