@@ -10,9 +10,9 @@ export default function addProfile(user, history) {
         .then(r => r.json())
         .then(u => {
             debugger
-            dispatch({type: 'ADD_USER', payload: u})
+            dispatch({type: 'ADD_PROFILE', payload: u})
             // do i want to redirect here or from the form?
-            history.push(`/users/${u.id}`)
+            // history.push(`/users/${u.id}`)
         }) 
     }
 }

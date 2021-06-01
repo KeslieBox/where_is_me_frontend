@@ -2,8 +2,9 @@ import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {Route} from 'react-router-dom'
 import {connect} from 'react-redux'
-import addUser from '../actions/addUser'
-import showUser from '../actions/showUser'
+import userSignup from '../actions/userSignup'
+import userLogin from '../actions/userLogin'
+import userLogout from '../actions/userLogout'
 import UserFormComponent from './UserFormComponent'
 
 class UserForm extends Component{
@@ -12,7 +13,7 @@ class UserForm extends Component{
         super(props)
         this.state = {
             username: '',
-            password: ''
+            password: '',
         }
     }
 
@@ -23,13 +24,14 @@ class UserForm extends Component{
     }
 
     handleSubmit = (user) => {
+        debugger
         // if (this.props.location.pathname === '/users/login') {
         //     this.props.showUser(user) 
         //     const userId = this.props.users.find(u => u.username === user.username).id
         //     this.props.history.push(`/users/${userId}`)
         // } else { 
         //     debugger 
-        //     this.props.addUser(user)
+        //     this.props.userSignup(user)
         //     debugger
         //     if (this.props.users.find(u => u.username === user.username)){
         //         debugger
@@ -41,17 +43,21 @@ class UserForm extends Component{
         //     this.props.showUser(user) 
         // } else 
 
-        // sessionStorage
-        // const cachedUser = sessionStorage.getItem(this.state.username)
+        // localStorage
+        // const cachedUser = localStorage.getItem(this.state.username)
         // if (cachedUser){
         //     this.setState({ username: cachedUser })
         // }
-        if (this.props.users.find(u => u.username === user.username)) {
-            const userId = this.props.users.find(u => u.username === user.username).id
-            // create current user in redux state action creator that returns the action object that uses reducer to set current user
-            this.props.history.push(`/users/${userId}`)
+        // if (this.props.users.find(u => u.username === user.username)) {
+        //     const userId = this.props.users.find(u => u.username === user.username).id
+        //     // create current user in redux state action creator that returns the action object that uses reducer to set current user
+        //     this.props.history.push(`/users/${userId}`)
+        if (this.props.match.path === '/users/login'){
+            this.props.userLogin(user, this.props.history)
+            debugger
         } else {
-            this.props.addUser(user, this.props.history)
+            this.props.userSignup(user, this.props.history)
+            debugger
         }
     }
 
@@ -69,7 +75,7 @@ const mapStateToProps = (state) => {
 }
 
 
-// export default connect(null, {addUser})(NewUserForm)
+// export default connect(null, {userSignup})(NewUserForm)
 // export default NewUserForm
 // withRouter gives me access to history
-export default withRouter(connect(mapStateToProps, {addUser, showUser})(UserForm))
+export default withRouter(connect(mapStateToProps, {userLogin, userLogout, userSignup})(UserForm))

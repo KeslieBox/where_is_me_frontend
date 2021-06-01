@@ -1,6 +1,6 @@
 import { NavLink, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
-import showUser from './actions/showUser'
+import showUser from './actions/userLogin'
 import {useState} from 'react'
 
 // move to index.css

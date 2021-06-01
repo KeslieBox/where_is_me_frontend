@@ -1,4 +1,4 @@
-export default function addUser(user, history) {
+export default function userSignup(user, history) {
     debugger
     return function (dispatch){
         fetch('http://localhost:3000/users/', {

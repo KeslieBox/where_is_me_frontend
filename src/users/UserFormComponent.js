@@ -13,14 +13,22 @@ class UserFormComponent extends Component {
         this.props.submitCallback(this.props.user)
     }
 
+    handleLogout = (e) => {
+        debugger
+        this.props.userLogout()
+    }
+
     render() {
         return(
-            <form onSubmit={this.handleSubmit.bind(this)}>
-                <input type="text" onChange={this.handleChange} name="username" value={this.props.user && this.props.user.username} />
-                <input type="text" onChange={this.handleChange} name='password' value={this.props.user && this.props.user.password} />
-        
-                <input type="submit" value='Signup'/>
-            </form>
+            <>
+                <form onSubmit={this.handleSubmit.bind(this)}>
+                    <input type="text" onChange={this.handleChange} name="username" value={this.props.user && this.props.user.username} />
+                    <input type="text" onChange={this.handleChange} name='password' value={this.props.user && this.props.user.password} />
+            
+                    <input type="submit" value='Signup'/>
+                </form>
+                <button onClick={this.handleLogout}>Logout</button>
+            </>
         )
     }
 }
