@@ -1,7 +1,9 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
 import showUser from './actions/showUser'
+import {useState} from 'react'
 
+// move to index.css
 const link = {
   width: '100px',
   padding: '12px',
@@ -11,12 +13,14 @@ const link = {
 }
 
 // const userId = () => {
-//   debugger
+//   this.showUser()
 
 // }
 
 
-const NavBar = () => {
+const NavBar = (props) => {
+
+  useState()
   // need to create conditional for which links to show
   return (
     <div className='navbar'>
@@ -32,19 +36,25 @@ const NavBar = () => {
           to="/users/login"
           style={link}
       >Login</NavLink>
-      <NavLink
-        // need to create route for show page, /users/:id
-          // to={`/users/${userId()}`}
-          to='/profile'
-          style={link}
-      >Profile</NavLink>
-      <NavLink
-          to="/matches"
-          style={link}
-      >Matches</NavLink>
+      {/* conditional, if path has id, render these links or should i make this a child component*/}
+      {/* if(props.history.location.pathname === '/users/' ){
+        <> */}
+          <NavLink
+            // need to create route for show page, /users/:id
+              // to={`/users/${userId()}`}
+              to='/profile'
+              style={link}
+          >Profile</NavLink>
+          <NavLink
+              to="/matches"
+              style={link}
+          >Matches</NavLink>
+      {/* </>
+      } */}
     </div>
   );
 };
 
 
-export default connect(null, {showUser})(NavBar)
+
+export default withRouter(connect(null, {showUser})(NavBar))

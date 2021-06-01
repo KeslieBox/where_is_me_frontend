@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import UserForm from './UserForm'
 import Users from './Users'
 import User from './User'
+import UserProfile from './UserProfile'
+import ProfileForm from './ProfileForm'
 import fetchUsers from '../actions/fetchUsers'
 import { Component } from 'react'
 
@@ -25,15 +27,18 @@ class UsersContainer extends Component{
             <Route path={'/users/signup'}>
               <UserForm />
             </Route>
-            <Route exact path="/users">
+            <Route path='/users/:id/profile/form'>
+              <ProfileForm />
+            </Route>
+            <Route exact path="/matches">
               <Users />
             </Route>
             <Route path='/users/:id' render={(routerProps) => <User {...routerProps}/>}/>
+            <Route path='/users/:id/profile' render={(routerProps) => <UserProfile {...routerProps}/>}/>
           </Switch>
       </>
     )
   }
 }
 
-// export default UsersContainer
 export default connect(null, {fetchUsers})(UsersContainer)

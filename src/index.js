@@ -2,9 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter as Router} from 'react-router-dom'
-import {createStore, compose, applyMiddleware} from 'redux'
+import {createStore, compose, applyMiddleware, combineReducers} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import usersReducer from './reducers/usersReducer'
+import profileReducer from './reducers/profileReducer'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -13,9 +14,10 @@ import './index.css'
 // do i need this?
 const initialState = {users: []}
 
-const store = createStore(usersReducer, initialState, compose(applyMiddleware(thunk), composeWithDevTools()))
+const combinedReducer = combineReducers({profile: profileReducer, users: usersReducer})
 
-console.log(store)
+const store = createStore(combinedReducer, initialState, compose(applyMiddleware(thunk), composeWithDevTools()))
+
 ReactDOM.render(
   <Router >
     {/* provider gives access to data in redux store 
