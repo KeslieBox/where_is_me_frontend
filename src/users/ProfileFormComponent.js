@@ -47,6 +47,7 @@ class ProfileFormComponent extends Component {
 
 // do i need this here if getting props from profile form??
 const mapStateToProps = (state) => {
+    debugger
     return {users: state.users, pronouns: state.profile}
 }
 

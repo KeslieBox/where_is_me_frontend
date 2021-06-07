@@ -10,7 +10,7 @@ export default function userLogin(user, history){
         // need error handling
         .then(u => {
             debugger
-            dispatch({type: 'LOGIN_USER', payload: u})
+            dispatch({type: 'USER_SESSION', payload: u})
             history.push(`/users/${u.id}`)
         })
     }    

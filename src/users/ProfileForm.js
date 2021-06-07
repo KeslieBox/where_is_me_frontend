@@ -43,7 +43,7 @@ class ProfileForm extends Component{
 
     handleSubmit = (e) => {
         debugger
-        this.props.addProfile(this.state)
+        this.props.addProfile(this.props.user, this.props.history)
         // how to send input values from profile form component to this component when the submit button lives here??
 
         // if (this.props.users.find(u => u.username === user.username)) {
@@ -82,7 +82,9 @@ class ProfileForm extends Component{
 }
 
 // do i need users?
-const mapStateToProps = (state) => {return {users: state.users, pronouns: state.profile}}
+const mapStateToProps = (state) => {
+    debugger
+    return {users: state.users, pronouns: state.profile, user: state.user}}
 
 export default connect(mapStateToProps, {addProfile, fetchPronouns})(ProfileForm)
 

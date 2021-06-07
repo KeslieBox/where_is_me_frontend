@@ -1,5 +1,6 @@
+// combine this action with login??
+
 export default function userSignup(user, history) {
-    debugger
     return function (dispatch){
         fetch('http://localhost:3000/users/', {
             method: 'POST',
@@ -8,7 +9,7 @@ export default function userSignup(user, history) {
         })
         .then(r => r.json())
         .then(u => {
-            dispatch({type: 'ADD_USER', payload: u})
+            dispatch({type: 'USER_SESSION', payload: u})
             history.push(`/users/${u.id}`)
         }) 
     }

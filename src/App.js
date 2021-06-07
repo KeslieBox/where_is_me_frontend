@@ -5,19 +5,11 @@ import {useEffect} from 'react'
 import {connect} from 'react-redux'
 
 function App(props) {
-  debugger
-  // same as componentDidMount
-  useEffect(() => {
-    // use this to set the current user??
-
-  }, [])
-
+ 
   return (
     <>
-      {/* <NavBar userId={props.user.id}/> */}
-      <NavBar />
+      <NavBar userId={props.user.id}/>
       <UsersContainer />
-      {/* <NewUserForm /> */}
     </>
   );
 }

@@ -1,9 +1,12 @@
 
 export default function usersReducer(state = {}, action){
     switch(action.type){
-        case 'FETCH_USERS':
-            // return {...state, users: action.payload}
+        // combine add user and login user?
+        case 'USER_SESSION':
+            debugger
             return action.payload
+        case 'LOGOUT_USER':
+            return {username: ''}
         default:
             return state
     }

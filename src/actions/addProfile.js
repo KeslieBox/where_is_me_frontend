@@ -3,7 +3,7 @@ export default function addProfile(user, history) {
     return function (dispatch){
         // how to send userid
         fetch(`http://localhost:3000/users/${user.id}`, {
-            method: 'POST',
+            method: 'PATCH',
             headers: {Accept: "application/json", "Content-Type": "application/json"},
             body: JSON.stringify({user})
         })
@@ -12,7 +12,7 @@ export default function addProfile(user, history) {
             debugger
             dispatch({type: 'ADD_PROFILE', payload: u})
             // do i want to redirect here or from the form?
-            // history.push(`/users/${u.id}`)
+            history.push(`/users/${u.id}`)
         }) 
     }
 }

@@ -9,13 +9,7 @@ class UserFormComponent extends Component {
 
     handleSubmit = (e) => { 
         e.preventDefault()
-        debugger
         this.props.submitCallback(this.props.user)
-    }
-
-    handleLogout = (e) => {
-        debugger
-        this.props.userLogout()
     }
 
     render() {
@@ -27,7 +21,6 @@ class UserFormComponent extends Component {
             
                     <input type="submit" value='Signup'/>
                 </form>
-                <button onClick={this.handleLogout}>Logout</button>
             </>
         )
     }

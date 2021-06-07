@@ -19,8 +19,7 @@ const link = {
 
 
 const NavBar = (props) => {
-
-  useState()
+  
   // need to create conditional for which links to show
   return (
     <div className='navbar'>
@@ -29,11 +28,11 @@ const NavBar = (props) => {
           style={link}
       >Home</NavLink>
       <NavLink
-          to="/users/signup"
+          to="/signup"
           style={link}
       >Signup</NavLink>
       <NavLink
-          to="/users/login"
+          to="/login"
           style={link}
       >Login</NavLink>
       {/* conditional, if path has id, render these links or should i make this a child component*/}
@@ -41,8 +40,8 @@ const NavBar = (props) => {
         <> */}
           <NavLink
             // need to create route for show page, /users/:id
-              // to={`/users/${userId()}`}
-              to='/profile'
+              to={`/users/${props.userId}/profile`}
+              // to='/profile'
               style={link}
           >Profile</NavLink>
           <NavLink

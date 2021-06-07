@@ -17,6 +17,23 @@ class UserForm extends Component{
         }
     }
 
+    componentDidMount(){
+        debugger
+        // do i want to handle logout here?
+        if (this.props.user && this.props.user.id){
+            localStorage.setItem('userID', '')
+            this.props.userLogout()
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        let storedID = localStorage.getItem('userID');
+        if (this.props.user && this.props.user.id !== storedID ) { //and doesn't equal current userID
+            debugger
+            localStorage.setItem('userID', this.props.user.id);
+        }
+    }
+
     handleChange = (user) => {
         this.setState({
             ...this.state, ...user
@@ -52,7 +69,7 @@ class UserForm extends Component{
         //     const userId = this.props.users.find(u => u.username === user.username).id
         //     // create current user in redux state action creator that returns the action object that uses reducer to set current user
         //     this.props.history.push(`/users/${userId}`)
-        if (this.props.match.path === '/users/login'){
+        if (this.props.match.path === '/login'){
             this.props.userLogin(user, this.props.history)
             debugger
         } else {
@@ -71,7 +88,7 @@ class UserForm extends Component{
 // const cachedUser = sessionStorage.getItem(this.state.username)
 
 const mapStateToProps = (state) => {
-    return {users: state.users}
+    return {users: state.users, user: state.user}
 }
 
 

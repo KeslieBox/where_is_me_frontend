@@ -5,6 +5,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {createStore, compose, applyMiddleware, combineReducers} from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import usersReducer from './reducers/usersReducer'
+import userReducer from './reducers/userReducer'
 import profileReducer from './reducers/profileReducer'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
@@ -12,9 +13,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 
 // do i need this?
-const initialState = {users: []}
+const initialState = {}
 
-const combinedReducer = combineReducers({profile: profileReducer, users: usersReducer})
+// this sends these keys to store
+const combinedReducer = combineReducers({profile: profileReducer, users: usersReducer, user: userReducer})
 
 const store = createStore(combinedReducer, initialState, compose(applyMiddleware(thunk), composeWithDevTools()))
 
