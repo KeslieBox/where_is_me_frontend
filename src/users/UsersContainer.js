@@ -2,14 +2,13 @@
 // import User from './User'
 import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
-import NavBar from '../NavBar'
 import UserForm from './UserForm'
-import Matches from './Matches'
+import Prowl from './Prowl'
 import User from './User'
 import ProfileDisplay from './ProfileDisplay'
 import ProfileForm from './ProfileForm'
 import fetchUsers from '../actions/fetchUsers'
-import authenticateUser from '../actions/authenticateUser'
+import authenticateUser from '../actions/user/authenticateUser'
 import { Component } from 'react'
 
 class UsersContainer extends Component{
@@ -18,21 +17,16 @@ class UsersContainer extends Component{
     this.props.fetchUsers()
     let userID = localStorage.getItem('userID');
     if (userID) {
+      debugger
       this.props.authenticateUser(parseInt(userID))
     }
   }
 
   componentDidUpdate(prevProps) {
-    debugger
     let storedID = localStorage.getItem('userID');
     if (this.props.users.id && this.props.users.id !== storedID ) { //and doesn't equal current userID
       localStorage.setItem('userID', this.props.users.id);
     }
-  }
-
-  handleFetch = () => {
-    debugger
-    this.props.fetchUsers()
   }
   
   render() {
@@ -43,8 +37,7 @@ class UsersContainer extends Component{
             {/* <NavBar userId={this.props.user.id}/> */}
             <Route path={'/login'} component={UserForm}/>
             <Route path={'/signup'} component={UserForm}/>
-            {/* how to make matches maintain state?? should i send props?? */}
-            <Route exact path="/matches" render={(routerProps) => <Matches {...routerProps} getUsers={console.log(this.state)}/>}/>
+            <Route exact path="/prowl" render={(routerProps) => <Prowl {...routerProps} />}/>
             <Route path='/users/:id/profile/form' component={ProfileForm}/>
             <Route path='/users/:id/profile' render={(routerProps) => <ProfileDisplay {...routerProps} userId={this.props.user.id}/>}/>
             <Route path='/users/:id' render={(routerProps) => <User {...routerProps}/>}/>

@@ -1,6 +1,6 @@
 import { NavLink, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
-import showUser from './actions/userLogin'
+import showUser from './actions/user/userLogin'
 import {useState} from 'react'
 
 // move to index.css
@@ -44,6 +44,10 @@ const NavBar = (props) => {
               // to='/profile'
               style={link}
           >Profile</NavLink>
+          <NavLink
+              to="/prowl"
+              style={link}
+          >Prowl</NavLink>
           <NavLink
               to="/matches"
               style={link}

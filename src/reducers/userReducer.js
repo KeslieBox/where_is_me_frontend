@@ -1,12 +1,15 @@
 
-export default function usersReducer(state = {}, action){
+export default function userReducer(state = {}, action){
     switch(action.type){
-        // combine add user and login user?
         case 'USER_SESSION':
-            debugger
             return action.payload
         case 'LOGOUT_USER':
             return {username: ''}
+        case 'ADD_PROFILE':
+            return action.payload
+        // case 'ADD_MATCH':
+        //     debugger
+        //     return {}
         default:
             return state
     }

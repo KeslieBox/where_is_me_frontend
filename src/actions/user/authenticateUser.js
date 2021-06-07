@@ -9,7 +9,8 @@ export default function authenticateUser(id){
         .then(r => r.json())
         // need error handling
         .then(u => {
-            dispatch({type: 'LOGIN_USER', payload: u})
+            debugger
+            dispatch({type: 'USER_SESSION', payload: u})
             // history.push(`/users/${u.id}`)
         })
     }    

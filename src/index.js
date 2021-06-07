@@ -7,6 +7,7 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import usersReducer from './reducers/usersReducer'
 import userReducer from './reducers/userReducer'
 import profileReducer from './reducers/profileReducer'
+import matchesReducer from './reducers/matchesReducer'
 import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -16,7 +17,7 @@ import './index.css'
 const initialState = {}
 
 // this sends these keys to store
-const combinedReducer = combineReducers({profile: profileReducer, users: usersReducer, user: userReducer})
+const combinedReducer = combineReducers({profile: profileReducer, users: usersReducer, user: userReducer, matches: matchesReducer})
 
 const store = createStore(combinedReducer, initialState, compose(applyMiddleware(thunk), composeWithDevTools()))
 
