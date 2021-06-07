@@ -17,7 +17,6 @@ class UsersContainer extends Component{
     this.props.fetchUsers()
     let userID = localStorage.getItem('userID');
     if (userID) {
-      debugger
       this.props.authenticateUser(parseInt(userID))
     }
   }

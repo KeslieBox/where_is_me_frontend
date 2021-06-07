@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import Profile from '../matches/Profile'
+import Matches from './Matches'
+import addMatch from '../actions/user/addMatch'
 // import fetchUsers from '../actions/fetchUsers'
 
  
@@ -9,7 +11,7 @@ import Profile from '../matches/Profile'
     handleClick = (e) => {
         e.preventDefault()
         debugger
-        this.props.addMatch(e.target.id)
+        this.props.addMatch(this.props.user.id, parseInt(e.target.id))
     }
 
     render() {
@@ -22,15 +24,17 @@ import Profile from '../matches/Profile'
         return(
             <>
             <ul>
-                {/* {this.props.users && this.props.users.map(u => <><li>{u.username}</li> <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button></>)} */}
-                {this.props.users && this.props.users.map(u => {
+                {this.props.users && this.props.users.map(u => <><li>{u.username}</li> <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button></>)}
+                {/* to figure out how not to show the current user profile */}
+                {/* {this.props.users && this.props.users.map(u => {
                     debugger
                     if (u.id !== this.props.user.id) {
                         <><li>{u.username}</li> 
                         <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button></>
                     }
-                })} 
+                })}  */}
             </ul>
+            <Matches />
             </>
         ) 
     }
@@ -40,4 +44,4 @@ import Profile from '../matches/Profile'
 
  const mapStateToProps = (state) => { return {users: state.users, user: state.user, matches: state.matches }}
 
- export default connect(mapStateToProps)(Prowl)
+ export default connect(mapStateToProps, {addMatch})(Prowl)

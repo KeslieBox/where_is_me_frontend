@@ -16,8 +16,8 @@ import './index.css'
 // do i need this?
 const initialState = {}
 
-// this sends these keys to store
-const combinedReducer = combineReducers({profile: profileReducer, users: usersReducer, user: userReducer, matches: matchesReducer})
+// this sends these keys/values to store
+const combinedReducer = combineReducers({profile: profileReducer, users: usersReducer, user: userReducer})
 
 const store = createStore(combinedReducer, initialState, compose(applyMiddleware(thunk), composeWithDevTools()))
 
