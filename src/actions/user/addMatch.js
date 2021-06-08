@@ -1,16 +1,15 @@
 export default function addMatch(userId, matchId) {
     debugger
     return function (dispatch){
-        fetch(`http://localhost:3000/match`, {
+        fetch(`http://localhost:3000/matches`, {
             method: 'POST',
             headers: {Accept: "application/json", "Content-Type": "application/json"},
-            body: JSON.stringify({liker_id: userId, liked_id: matchId})
+            body: JSON.stringify({match: {liker_id: userId, liked_id: matchId}})
         })
         .then(r => r.json())
-        .then(u => {
-            debugger
+        .then(m => {
             // is this where i should add the user to the frontend match?
-            dispatch({type: 'ADD_MATCH', payload: u})
+            dispatch({type: 'ADD_MATCH', payload: m})
         }) 
     }
 }

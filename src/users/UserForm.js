@@ -45,8 +45,7 @@ class UserForm extends Component{
         // this.props.history.push(`/users/${this.props.user.id}`)
 
         
-        this.props.userLogin(user, this.props.match.path)
-debugger
+        this.props.userLogin(user, this.props.match.path, this.props.history)
         this.props.history.push(`/users/${this.props.user.id}`)
 
     }

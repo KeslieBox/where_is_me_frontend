@@ -10,10 +10,10 @@ export default function userReducer(state = {}, action){
             return action.payload
         case 'ADD_MATCH':
             debugger
-            // return {...state, ...{matches: action.payload}}
+            return action.payload
             // return {...state.likedMatches, ...{likedMatches: action.payload}}
             // can i do this??: 
-            return {...state, ...state.likedMatches.push(action.payload[0])}
+            // return {...state, action.payload[0])}
             // return {...state, ...state.likedMatches[0], ...action.payload[0]}
         default:
             return state
