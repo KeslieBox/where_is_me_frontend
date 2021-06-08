@@ -24,4 +24,4 @@ import userLogout from '../actions/user/userLogout'
 
 const mapStateToProps = (state) => {return {users: state.users, user: state.user}}
 
-export default withRouter(connect(mapStateToProps, {userLogout}) (User))
+export default connect(mapStateToProps, {userLogout}) (User)

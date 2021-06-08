@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import fetchPronouns from '../actions/profile/fetchPronouns'
 // import Checkboxes from './Checkboxes'
 
 
@@ -35,7 +34,7 @@ const mapStateToProps = (state) => {
     return {users: state.users, pronouns: state.profile}
 }
 
-export default connect (mapStateToProps, {fetchPronouns})(ProfileFormComponent)
+export default connect (mapStateToProps)(ProfileFormComponent)
 
 
 

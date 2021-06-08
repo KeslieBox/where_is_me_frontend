@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
+import {Route, Switch} from 'react-router-dom'
 import Profile from '../matches/Profile'
 import Matches from './Matches'
 import addMatch from '../actions/user/addMatch'
@@ -34,7 +35,8 @@ import addMatch from '../actions/user/addMatch'
                     }
                 })}  */}
             </ul>
-            <Matches />
+            {/* <Route exact path={`/users/${this.props.user.id}`} render={(routerProps) => <Matches {...routerProps} />}/> */}
+
             </>
         ) 
     }

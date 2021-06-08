@@ -9,7 +9,12 @@ export default function userReducer(state = {}, action){
         case 'ADD_PROFILE':
             return action.payload
         case 'ADD_MATCH':
-            return {...state, ...{matches: action.payload}}
+            debugger
+            // return {...state, ...{matches: action.payload}}
+            // return {...state.likedMatches, ...{likedMatches: action.payload}}
+            // can i do this??: 
+            return {...state, ...state.likedMatches.push(action.payload[0])}
+            // return {...state, ...state.likedMatches[0], ...action.payload[0]}
         default:
             return state
     }

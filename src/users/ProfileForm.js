@@ -1,19 +1,10 @@
 import React, {Component} from 'react'
-import {withRouter} from 'react-router-dom'
-import {Route} from 'react-router-dom'
 import {connect} from 'react-redux'
-// import showUser from '../actions/userLogin'
 import ProfileFormComponent from './ProfileFormComponent'
-import fetchIdentities from '../actions/profile/fetchIdentities'
-import fetchInterests from '../actions/profile/fetchInterests'
-import fetchLookingFors from '../actions/profile/fetchLookingFors'
-import fetchPolitics from '../actions/profile/fetchPolitics'
-import fetchPronouns from '../actions/profile/fetchPronouns'
-import fetchStatuses from '../actions/profile/fetchStatuses'
+import fetchCategories from '../actions/profile/fetchCategories'
 import addProfile from '../actions/user/addProfile'
 
 class ProfileForm extends Component{
-    debugger
     // local state to handle form input:
     constructor(props){
         super(props)
@@ -28,12 +19,18 @@ class ProfileForm extends Component{
     }
 
     componentDidMount(){
-        this.props.fetchIdentities()
-        this.props.fetchInterests()
-        this.props.fetchLookingFors()
-        this.props.fetchPolitics()
-        this.props.fetchPronouns()
-        this.props.fetchStatuses()
+        debugger
+        const profileArray = ['pronouns', 'identities', 'interests', 'looking_fors', 'politics', 'statuses']
+        profileArray.map(category => this.props.fetchCategories(category))
+        // Object.keys(this.state).map(category => {debugger 
+        //     this.props.fetchCategories(`${category.split('_ids')[0]}s`)})
+        // this.props.fetchIdentities()
+        // this.props.fetchInterests()
+        // this.props.fetchLookingFors()
+        // this.props.fetchPolitics()
+        // this.props.fetchPronouns()
+        // this.props.fetchStatuses()
+        // this.props.fetchCategories(category)
     }
 
     // patch request to assign these attributes, sending userId & ids associated w everything theyve selected
@@ -144,7 +141,7 @@ const mapStateToProps = (state) => {return {users: state.users, profile: state.p
 
 // const actions = {}
 
-export default connect(mapStateToProps, {addProfile, fetchIdentities, fetchInterests, fetchLookingFors, fetchPolitics, fetchPronouns, fetchStatuses})(ProfileForm)
+export default connect(mapStateToProps, {addProfile, fetchCategories})(ProfileForm)
 
 
 

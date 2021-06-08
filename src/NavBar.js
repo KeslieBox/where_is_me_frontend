@@ -49,7 +49,7 @@ const NavBar = (props) => {
               style={link}
           >Prowl</NavLink>
           <NavLink
-              to="/matches"
+              to='/matches'
               style={link}
           >Matches</NavLink>
       {/* </>

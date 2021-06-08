@@ -37,12 +37,18 @@ class UserForm extends Component{
     }
 
     handleSubmit = (user) => {
-        if (this.props.match.path === '/login'){
-            this.props.userLogin(user, this.props.history)
-        } else {
-            this.props.userSignup(user, this.props.history)
-        }
+        // if (this.props.match.path === '/login'){
+        //     this.props.userLogin(user, this.props.history)
+        // } else {
+        //     this.props.userSignup(user, this.props.history)
+        // }
+        // this.props.history.push(`/users/${this.props.user.id}`)
+
+        
+        this.props.userLogin(user, this.props.match.path)
+debugger
         this.props.history.push(`/users/${this.props.user.id}`)
+
     }
 
     render() {   

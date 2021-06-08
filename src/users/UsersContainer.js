@@ -4,6 +4,7 @@ import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import UserForm from './UserForm'
 import Prowl from './Prowl'
+import Matches from './Matches'
 import User from './User'
 import ProfileDisplay from './ProfileDisplay'
 import ProfileForm from './ProfileForm'
@@ -17,28 +18,27 @@ class UsersContainer extends Component{
     this.props.fetchUsers()
     let userID = localStorage.getItem('userID');
     if (userID) {
-      this.props.authenticateUser(parseInt(userID))
+     this.props.authenticateUser(parseInt(userID))
     }
   }
 
   componentDidUpdate(prevProps) {
     let storedID = localStorage.getItem('userID');
-    if (this.props.users.id && this.props.users.id !== storedID ) { //and doesn't equal current userID
-      localStorage.setItem('userID', this.props.users.id);
+    if (this.props.user.id && this.props.user.id !== storedID ) { //and doesn't equal current userID
+      localStorage.setItem('userID', this.props.user.id);
     }
   }
   
   render() {
     return (
       <>
-        <p>UsersContainer</p>
           <Switch>
-            {/* <NavBar userId={this.props.user.id}/> */}
             <Route path={'/login'} component={UserForm}/>
             <Route path={'/signup'} component={UserForm}/>
             <Route exact path="/prowl" render={(routerProps) => <Prowl {...routerProps} />}/>
+            <Route exact path="/matches" render={(routerProps) => <Matches {...routerProps} />}/>
             <Route path='/users/:id/profile/form' component={ProfileForm}/>
-            <Route path='/users/:id/profile' render={(routerProps) => <ProfileDisplay {...routerProps} userId={this.props.user.id}/>}/>
+            <Route path='/users/:id/profile' render={(routerProps) => <ProfileDisplay {...routerProps}/>}/>
             <Route path='/users/:id' render={(routerProps) => <User {...routerProps}/>}/>
           </Switch>
       </>

@@ -1,12 +1,10 @@
 import React from 'react'
 import { Component } from 'react'
 import {connect} from 'react-redux'
-import fetchPronouns from '../actions/fetchPronouns'
 
 class Checkboxes extends Component {
     
     componentDidMount(){
-        this.props.fetchPronouns()
         // this.props.fetchStatuses()
     }
 
@@ -26,4 +24,4 @@ const mapStateToProps = (state) => {
     return {users: state.users, pronouns: state.profile}
 }
 
-export default connect(mapStateToProps, {fetchPronouns}) (Checkboxes)
+export default connect(mapStateToProps) (Checkboxes)
