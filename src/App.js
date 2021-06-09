@@ -1,6 +1,7 @@
 import NavBar from './NavBar'
 import UsersContainer from './users/UsersContainer'
 import {connect} from 'react-redux'
+// import {withRouter} from 'react-router-dom'
 
 function App(props) {
  
@@ -12,6 +13,7 @@ function App(props) {
   );
 }
 
-const mapStateToProps = state => ({user: state.user})
+const mapStateToProps = state => ({user: state.user, users: state.users, profile: state.profile})
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(App)
+// export default withRouter(connect(mapStateToProps)(App))

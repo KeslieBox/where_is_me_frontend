@@ -1,6 +1,7 @@
 import { NavLink, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
 import showUser from './actions/user/userLogin'
+import userLogout from './actions/user/userLogout'
 
 // move to index.css
 const link = {
@@ -45,6 +46,11 @@ const NavBar = (props) => {
               to='/matches'
               style={link}
           >Matches</NavLink>
+          <NavLink
+              to='/users'
+              onClick={() => props.userLogout(props.history)}
+              style={link}
+          >Logout</NavLink>
       {/* </>
       } */}
     </div>
@@ -53,4 +59,4 @@ const NavBar = (props) => {
 
 
 
-export default withRouter(connect(null, {showUser})(NavBar))
+export default withRouter(connect(null, {userLogout})(NavBar))

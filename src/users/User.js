@@ -6,17 +6,17 @@ import userLogout from '../actions/user/userLogout'
 // function User(props) {
     class User extends Component {
 
-    handleLogout = () => {
-        this.props.userLogout(this.props.history)
-        this.props.history.push('/users')
-    }
+    // handleLogout = () => {
+    //     this.props.userLogout(this.props.history)
+    //     this.props.history.push('/users')
+    // }
 
     render() {
         debugger
         return(
             <>
             <h3>Welcome, {this.props.user && this.props.user.username}</h3>
-            <button onClick={this.handleLogout}>Logout</button>
+            {/* <button onClick={this.handleLogout}>Logout</button> */}
             </>
         )
     }

@@ -1,5 +1,6 @@
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import User from './User'
 
 
 function ProfileDisplay(props) {
@@ -12,6 +13,7 @@ function ProfileDisplay(props) {
 
     return(
         <>
+        <User />
         <h3>Pronouns</h3>
            {props.user.pronouns && props.user.pronouns.map(p => <p>{p.name}</p>)}
         <h3>Status</h3>
