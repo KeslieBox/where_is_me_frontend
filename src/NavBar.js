@@ -1,7 +1,6 @@
 import { NavLink, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
 import showUser from './actions/user/userLogin'
-import {useState} from 'react'
 
 // move to index.css
 const link = {
@@ -11,12 +10,6 @@ const link = {
   textDecoration: 'none',
   color: 'white',
 }
-
-// const userId = () => {
-//   this.showUser()
-
-// }
-
 
 const NavBar = (props) => {
   
