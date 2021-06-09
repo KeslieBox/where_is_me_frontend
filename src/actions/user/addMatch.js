@@ -1,5 +1,4 @@
 export default function addMatch(userId, matchId) {
-    debugger
     return function (dispatch){
         fetch(`http://localhost:3000/matches`, {
             method: 'POST',

@@ -12,10 +12,9 @@ import userLogout from '../actions/user/userLogout'
     // }
 
     render() {
-        debugger
         return(
             <>
-            <h3>Welcome, {this.props.user && this.props.user.username}</h3>
+            <h1>Welcome, {this.props.user && this.props.user.username}</h1>
             {/* <button onClick={this.handleLogout}>Logout</button> */}
             </>
         )

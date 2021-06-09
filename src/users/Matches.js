@@ -9,7 +9,7 @@ import { connect } from "react-redux";
         super()
         this.state = {
             clicked: false,
-            matches: []
+            matches: [],
         }
     }    
 
@@ -27,6 +27,18 @@ import { connect } from "react-redux";
         })
     }
 
+    handleIncrement = (id) => {
+        this.setState(prevState => {
+            if (prevState[id]){ 
+                return {
+                    [id]: prevState[id] + 1,
+                }
+            } else {
+                return {[id]: 1}
+            }
+        })  
+    }
+
 
     render () {
 
@@ -34,8 +46,14 @@ import { connect } from "react-redux";
             <>
             <ul>                
                 {/* {this.state.matches && this.state.matches.map(u => <li>{u.username}</li>)} */}
-                {this.props.user.mutualMatches && this.props.user.mutualMatches.map(u => <li key={u.id}>{u.username}</li>)}
-
+                {/* {this.props.user.mutualMatches && this.props.user.mutualMatches.map(u => <li key={u.id}>{u.username}</li>)} */}
+                {this.props.user.mutualMatches && this.props.user.mutualMatches.map(u => {
+                        return <>
+                            <li key={u.id}>{u.username}, {this.state[u.id]} </li> 
+                            <button onClick={(e) => this.handleIncrement(u.id)}>+</button>
+                        </>
+                })}
+                
             </ul>
             <button onClick={(e) => this.handleLiked(e)}>My Liked</button>
             <button onClick={(e) => this.handleMatches(e)}>My Matches</button>

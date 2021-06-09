@@ -9,40 +9,51 @@ class ProfileForm extends Component{
     constructor(props){
         super(props)
         this.state = {
-            pronoun_ids: [],
-            identity_ids: [],
-            interest_ids: [],
-            looking_for_ids: [],
-            politic_ids: [],
-            status_ids: [],
+            // using props in state only to send user data to checkboxes in this component
+            pronoun_ids: this.props.user.pronounIds || [],
+            identity_ids: this.props.user.identityIds || [],
+            interest_ids: this.props.user.interestIds || [],
+            looking_for_ids: this.props.user.lookingForIds || [],
+            politic_ids: this.props.user.politicIds || [],
+            status_ids: this.props.user.statusIds || []
         }
     }
 
     componentDidMount(){
-        debugger
-        const profileArray = ['pronouns', 'identities', 'interests', 'looking_fors', 'politics', 'statuses']
-        profileArray.map(category => this.props.fetchCategories(category))
-        // Object.keys(this.state).map(category => {debugger 
-        //     this.props.fetchCategories(`${category.split('_ids')[0]}s`)})
-        // this.props.fetchIdentities()
-        // this.props.fetchInterests()
-        // this.props.fetchLookingFors()
-        // this.props.fetchPolitics()
-        // this.props.fetchPronouns()
-        // this.props.fetchStatuses()
-        // this.props.fetchCategories(category)
+        categoriesArray.map(category => this.props.fetchCategories(category))
     }
 
-    // patch request to assign these attributes, sending userId & ids associated w everything theyve selected
-    // just need to iterate through each category option and display them to the page for the form
-    handleChange = (e) => {
-        // ...this.state, [e.target.name]: array
-        let array = [...this.state[e.target.className], e.target.id]
+    componentDidUpdate(prevProps){
+        if (!prevProps.user.id && this.props.user.id){
+            this.setState({
+                pronoun_ids: this.props.user.pronounIds,
+                identity_ids: this.props.user.identityIds,
+                interest_ids: this.props.user.interestIds,
+                looking_for_ids: this.props.user.lookingForIds,
+                politic_ids: this.props.user.politicIds,
+                status_ids: this.props.user.statusIds
+            })
+        }
+    }
+
+    handleClick = (e, id) => {
+        let array = [...this.state[e.target.className], id]
         this.setState({
             ...this.state, [e.target.className]: array 
-            // ...this.state[e.target.className].push(e.target.name) -- old solution
-            // ...this.state, [e.target.name]: array --annabel solution
         })
+    }
+
+    fixString = (category) => {
+        debugger
+        if (category.includes('ies')){
+            return`${category.split('ies')[0]}_ids`
+        } else if (category.includes('es')){
+           return`${category.split('es')[0]}_ids`
+        } else if (category.includes('ests')){
+            return`${category.split('ests')[0]}_ids`
+         } else {
+            return `${category.split('s')[0]}_ids`
+        }
     }
 
     handleSubmit = (e) => {
@@ -50,82 +61,92 @@ class ProfileForm extends Component{
         const userProfile = {...{username: this.props.user.username, id: this.props.user.id}, ...this.state}
         this.props.addProfile(userProfile, this.props.history)
         this.props.history.push(`/users/${this.props.user.id}/profile`)
-        
-        // how to send input values from profile form component to this component when the submit button lives here??
-
     }
 
-    handleName = (e) => {
-        debugger
-    }
-
-    // separate component for checkboxes to clean up repetititon
-
+    // create separate component for checkboxes to clean up repetititon
     render() {
-        debugger
         return(
             // <ProfileFormComponent profile={this.state} handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}/>
             <>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    <h3>Pronouns</h3>
-                    <span className='checkboxes'>
-                    {this.props.profile.pronouns && this.props.profile.pronouns.map(p =>  
-                        <>
-                            <input type="checkbox" onClick={this.handleChange} name={p.name} key={p.id} id={p.id} className='pronoun_ids'/>
-                            <label htmlFor={p.name}>{p.name}</label><br/>
+                    {categoriesArray.map(c => {
+                        const categoryString = this.fixString(c)
+                        return <>
+                            <h3>{c.charAt(0).toUpperCase() + c.slice(1)}</h3>
+                            <span className='checkboxes'>
+                            {this.props.profile[c] && this.props.profile[c].map(i =>  {  
+                                debugger 
+                                    return <>
+                                        <input type="checkbox" onClick={(e) => this.handleClick(e, i.id)} checked={this.state[categoryString].includes(i.id)} name={i.name} key={i.id} id={i.id} className={categoryString}/>
+                                        <label htmlFor={i.name}>{i.name}</label><br/>
+                                    </>
+                                }
+                            )}
+                            </span>
                         </>
+                    })}
+                    
+                    
+                    {/* <h3>Pronouns</h3>
+                    <span className='checkboxes'>
+                    {this.props.profile.pronouns && this.props.profile.pronouns.map(c =>  {                            
+                            return <>
+                                <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.pronoun_ids.includes(c.id)} name={c.name} key={c.id} id={c.id} className='pronoun_ids'/>
+                                <label htmlFor={c.name}>{c.name}</label><br/>
+                            </>
+                        }
                     )}
                     </span>
 
                     <h3>Status</h3>
                     <span className='checkboxes'>
-                    {this.props.profile.statuses && this.props.profile.statuses.map(s =>  
+                    {this.props.profile.statuses && this.props.profile.statuses.map(c =>  
                         <>
-                            <input type="checkbox" onClick={this.handleChange} name={s.name} key={s.id} id={s.id} className='status_ids'/>
-                            <label htmlFor={s.name}>{s.name}</label><br/>
+                            <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.status_ids.includes(c.id)} name={c.name} key={c.id} id={c.id} className='status_ids'/>
+                            <label htmlFor={c.name}>{c.name}</label><br/>
                         </>
                     )}
                     </span>
 
                     <h3>Looking For</h3>
                     <span className='checkboxes'>
-                    {this.props.profile.looking_fors && this.props.profile.looking_fors.map(s =>  
+                    {this.props.profile.looking_fors && this.props.profile.looking_fors.map(c =>  
                         <>
-                            <input type="checkbox" onClick={this.handleChange} name={s.name} key={s.id} id={s.id} className='looking_for_ids'/>
-                            <label htmlFor={s.name}>{s.name}</label><br/>
+                            <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.looking_for_ids.includes(c.id)} name={c.name} key={c.id} id={c.id} className='looking_for_ids'/>
+                            <label htmlFor={c.name}>{c.name}</label><br/>
                         </>
                     )}
                     </span>
 
                     <h3>Identities</h3>
                     <span className='checkboxes'>
-                    {this.props.profile.identities && this.props.profile.identities.map(s =>  
+                    {this.props.profile.identities && this.props.profile.identities.map(c =>  
                         <>
-                            <input type="checkbox" onClick={this.handleChange} name={s.name}  key={s.id} id={s.id} className='identity_ids'/>
-                            <label htmlFor={s.name}>{s.name}</label><br/>
+                            <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.identity_ids.includes(c.id)} name={c.name}  key={c.id} id={c.id} className='identity_ids'/>
+                            <label htmlFor={c.name}>{c.name}</label><br/>
                         </>
                     )}
                     </span>
                     
                     <h3>Interests</h3>
                     <span className='checkboxes'>
-                    {this.props.profile.interests && this.props.profile.interests.map(s =>  
+                    {this.props.profile.interests && this.props.profile.interests.map(c =>  
                         <>
-                            <input type="checkbox" onClick={this.handleChange} name={s.name} key={s.id} id={s.id} className='interest_ids'/>
-                            <label htmlFor={s.name}>{s.name}</label><br/>
+                            <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.interest_ids.includes(c.id)} name={c.name} key={c.id} id={c.id} className='interest_ids'/>
+                            <label htmlFor={c.name}>{c.name}</label><br/>
                         </>
                     )}
                     </span>
 
                     <h3>Politics</h3>
                     <span className='checkboxes'>
-                    {this.props.profile.politics && this.props.profile.politics.map(s =>  
+                    {this.props.profile.politics && this.props.profile.politics.map(c =>  
                         <>
-                            <input type="checkbox" onClick={this.handleChange} name={s.name} key={s.id} id={s.id} className='politic_ids'/>
-                            <label htmlFor={s.name}>{s.name}</label><br/>
+                            <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.politic_ids.includes(c.id)} name={c.name} key={c.id} id={c.id} className='politic_ids'/>
+                            <label htmlFor={c.name}>{c.name}</label><br/>
                         </>
                     )}
-                    </span>
+                    </span> */}
 
 
                     
@@ -138,6 +159,7 @@ class ProfileForm extends Component{
 
 // do i need users?
 const mapStateToProps = (state) => {return {users: state.users, profile: state.profile, user: state.user}}
+const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', 'interests', 'politics']
 
 // const actions = {}
 

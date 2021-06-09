@@ -15,8 +15,8 @@ import addMatch from '../actions/user/addMatch'
         this.props.addMatch(this.props.user.id, parseInt(e.target.id))
     }
 
+    // users reducer when fetch all users when someone logs in, create case called logged in or all logged in to use throughout app
     render() {
-        debugger
         // const seenProfiles = []
         // const matchTester = this.props.users && this.props.users.map(u => { 
         //     debugger
@@ -25,15 +25,14 @@ import addMatch from '../actions/user/addMatch'
         return(
             <>
             <ul>
-                {this.props.users && this.props.users.map(u => <><li>{u.username}</li> <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button></>)}
+                {/* {this.props.users && this.props.users.map(u => <><li key={u.id} >{u.username}</li> <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button></>)} */}
                 {/* to figure out how not to show the current user profile */}
-                {/* {this.props.users && this.props.users.map(u => {
-                    debugger
-                    if (u.id !== this.props.user.id) {
-                        <><li>{u.username}</li> 
-                        <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button></>
-                    }
-                })}  */}
+                {this.props.users && this.props.users.map(u => (
+                        <><li key={u.id}>{u.username}</li> 
+                        <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button>
+                        </>
+                    )
+                )}
             </ul>
             {/* <Route exact path={`/users/${this.props.user.id}`} render={(routerProps) => <Matches {...routerProps} />}/> */}
 

@@ -16,7 +16,7 @@
 
 
 export default function userLogin(user, path, history){
-    debugger
+    
     return function(dispatch){
         fetch(`http://localhost:3000${path}`, {
             method: 'POST',
@@ -26,9 +26,7 @@ export default function userLogin(user, path, history){
         .then(r => r.json())
         // need error handling
         .then(u => {
-            debugger
             dispatch({type: 'USER_SESSION', payload: u})
-            debugger
             history.push(`/users/${u.id}`)
         })
     }    

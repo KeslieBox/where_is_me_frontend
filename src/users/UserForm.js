@@ -52,7 +52,7 @@ class UserForm extends Component{
 
     render() {   
         return(
-            <UserFormComponent submitCallback={this.handleSubmit.bind(this)} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
+            <UserFormComponent submitCallback={this.handleSubmit.bind(this)} history={this.props.history} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
         )
     }
 }

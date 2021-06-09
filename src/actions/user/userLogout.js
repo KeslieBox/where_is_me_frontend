@@ -1,8 +1,6 @@
 export default function userLogout(history){
-    debugger
-    return function(dispatch){
-        // do i need to do anything on backend??
-        dispatch({type: 'LOGOUT_USER'})
-        // history.push('/users')
-    }    
+    // return function(dispatch){
+    //     dispatch({type: 'LOGOUT_USER'})
+    // }   
+    return {type: 'LOGOUT_USER'} 
 }
