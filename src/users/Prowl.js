@@ -27,6 +27,7 @@ import addMatch from '../actions/user/addMatch'
             <ul>
                 {/* {this.props.users && this.props.users.map(u => <><li key={u.id} >{u.username}</li> <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button></>)} */}
                 {/* to figure out how not to show the current user profile */}
+                
                 {this.props.users && this.props.users.map(u => (
                         <><li key={u.id}>{u.username}</li> 
                         <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button>

@@ -30,9 +30,7 @@ class ProfileFormComponent extends Component {
 }
 
 // do i need this here if getting props from profile form??
-const mapStateToProps = (state) => {
-    return {users: state.users, pronouns: state.profile}
-}
+const mapStateToProps = (state) => {return {users: state.users, pronouns: state.profile}}
 
 export default connect (mapStateToProps)(ProfileFormComponent)
 

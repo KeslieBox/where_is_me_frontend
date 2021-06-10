@@ -33,8 +33,6 @@ function ProfileDisplay(props) {
     )
 }
 
-const mapStateToProps = state => {
-    return {users: state.users, user: state.user}
-}
+const mapStateToProps = state => {return {users: state.users, user: state.user}}
 
 export default connect(mapStateToProps) (ProfileDisplay)

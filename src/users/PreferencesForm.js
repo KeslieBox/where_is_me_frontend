@@ -1,11 +1,9 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import ProfileFormComponent from './ProfileFormComponent'
-import fetchCategories from '../actions/profile/fetchCategories'
-import addProfile from '../actions/user/addProfile'
-
-class ProfileForm extends Component{
-    // local state to handle form input:
+import { Component } from "react";
+import { connect } from "react-redux";
+import {Route, Switch} from 'react-router-dom'
+ 
+ class PreferencesForm extends Component {
+    
     constructor(props){
         super(props)
         this.state = {
@@ -69,37 +67,10 @@ class ProfileForm extends Component{
             // <ProfileFormComponent profile={this.state} handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}/>
             <>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-                    {/* {categoriesArray.map(c => {
-                        let categoryString = this.fixString(c)
-                        return <>
-                            <h3>{c.charAt(0).toUpperCase() + c.slice(1)}</h3>
-                            <span className='checkboxes'>
-                            {this.props.profile[c] && this.props.profile[c].map(i =>  {  
-                                debugger 
-                                    return <>
-                                        <input type="checkbox" onClick={(e) => this.handleClick(e, i.id)} checked={this.state[categoryString].includes(i.id)} name={i.name} key={i.id} id={i.id} className={categoryString}/>
-                                        <label htmlFor={i.name}>{i.name}</label><br/>
-                                    </>
-                                }
-                            )}
-                            </span>
-                        </>
-                    })} */}
-                    
-                    
-                    <h3>Pronouns</h3>
-                    <span className='checkboxes'>
-                    {this.props.profile.pronouns && this.props.profile.pronouns.map(c =>  {                            
-                            return <>
-                                <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.pronoun_ids.includes(c.id)} name={c.name} key={c.id} id={c.id} className='pronoun_ids'/>
-                                <label htmlFor={c.name}>{c.name}</label><br/>
-                            </>
-                        }
-                    )}
-                    </span>
 
                     <h3>Status</h3>
                     <span className='checkboxes'>
+                        {/* display users who... */}
                     {this.props.profile.statuses && this.props.profile.statuses.map(c =>  
                         <>
                             <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.status_ids.includes(c.id)} name={c.name} key={c.id} id={c.id} className='status_ids'/>
@@ -155,32 +126,8 @@ class ProfileForm extends Component{
             </>
         )
     }
-}
+ }
 
-// do i need users?
-const mapStateToProps = (state) => {return {users: state.users, profile: state.profile, user: state.user}}
-const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', 'interests', 'politics']
+ const mapStateToProps = (state) => { return {users: state.users, user: state.user, matches: state.matches }}
 
-// const actions = {}
-
-export default connect(mapStateToProps, {addProfile, fetchCategories})(ProfileForm)
-
-
-
-// alphabetize
-// Property.allProperties.sort((a, b) => {
-//     if (a.name < b.name) {return -1}
-//     if (a.name > b.name) {return 1}
-//     return 0
-// })
-
-
-// table of checkboxes
-// for(let i = 0; i < this.props.pronouns.length; i++){
-    // <ProfileFormComponent onClick={this.handleClick} name="pronoun" value={profile.name} profile={profile} /> )}
-//     if(i % 4 === 0){
-//         tr = document.createElement('tr')
-//         tr.className = 'tr'
-//         table.appendChild(tr)
-//     }
-// }
+ export default connect(mapStateToProps)(PreferencesForm)

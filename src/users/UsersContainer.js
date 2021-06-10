@@ -42,6 +42,7 @@ class UsersContainer extends Component{
           <Switch>
             <Route path={'/login'} render={(routerProps) => <UserForm {...routerProps}/>}/>
             <Route path={'/signup'} render={(routerProps) => <UserForm {...routerProps}/>}/>
+            <Route path='/users/:id/preferences' component={ProfileForm}/>
             <Route exact path="/prowl" render={(routerProps) => <Prowl {...routerProps} />}/>
             <Route exact path="/matches" render={(routerProps) => <Matches {...routerProps} />}/>
             <Route path='/users/:id/profile/form' component={ProfileForm}/>

@@ -59,8 +59,6 @@ class UserForm extends Component{
 
 // const cachedUser = sessionStorage.getItem(this.state.username)
 
-const mapStateToProps = (state) => {
-    return {users: state.users, user: state.user}
-}
+const mapStateToProps = (state) => {return {users: state.users, user: state.user}}
 
 export default connect(mapStateToProps, {userLogin, userLogout, userSignup})(UserForm)

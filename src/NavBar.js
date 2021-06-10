@@ -39,6 +39,12 @@ const NavBar = (props) => {
               style={link}
           >Profile</NavLink>
           <NavLink
+            // need to create route for show page, /users/:id
+              to={`/users/${props.userId}/preferences`}
+              // to='/profile'
+              style={link}
+          >Preferences</NavLink>
+          <NavLink
               to="/prowl"
               style={link}
           >Prowl</NavLink>
@@ -51,8 +57,6 @@ const NavBar = (props) => {
               onClick={() => props.userLogout(props.history)}
               style={link}
           >Logout</NavLink>
-      {/* </>
-      } */}
     </div>
   );
 };
