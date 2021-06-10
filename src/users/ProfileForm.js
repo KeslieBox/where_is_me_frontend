@@ -3,20 +3,23 @@ import {connect} from 'react-redux'
 import ProfileFormComponent from './ProfileFormComponent'
 import Category from './Category'
 import fetchCategories from '../actions/profile/fetchCategories'
-import addProfile from '../actions/user/addProfile'
+import updateProfile from '../actions/user/updateProfile'
 
 class ProfileForm extends Component{
     // local state to handle form input:
     constructor(props){
         super(props)
         this.state = {
+            profile: {
             // using props in state only to send user data to checkboxes in this component
-            pronoun_ids: this.props.user.pronounIds || [],
-            identity_ids: this.props.user.identityIds || [],
-            interest_ids: this.props.user.interestIds || [],
-            looking_for_ids: this.props.user.lookingForIds || [],
-            politic_ids: this.props.user.politicIds || [],
-            status_ids: this.props.user.statusIds || []
+                pronoun_ids: this.props.user.pronounIds || [],
+                identity_ids: this.props.user.identityIds || [],
+                interest_ids: this.props.user.interestIds || [],
+                looking_for_ids: this.props.user.lookingForIds || [],
+                politic_ids: this.props.user.politicIds || [],
+                status_ids: this.props.user.statusIds || []
+            },
+            checked: false
         }
     }
 
@@ -27,21 +30,34 @@ class ProfileForm extends Component{
     componentDidUpdate(prevProps){
         if (!prevProps.user.id && this.props.user.id){
             this.setState({
-                pronoun_ids: this.props.user.pronounIds,
-                identity_ids: this.props.user.identityIds,
-                interest_ids: this.props.user.interestIds,
-                looking_for_ids: this.props.user.lookingForIds,
-                politic_ids: this.props.user.politicIds,
-                status_ids: this.props.user.statusIds
+                profile: {
+                    pronoun_ids: this.props.user.pronounIds,
+                    identity_ids: this.props.user.identityIds,
+                    interest_ids: this.props.user.interestIds,
+                    looking_for_ids: this.props.user.lookingForIds,
+                    politic_ids: this.props.user.politicIds,
+                    status_ids: this.props.user.statusIds
+              }
+
             })
         }
     }
 
-    handleClick = (e, id) => {
+    handleClick = (e, i) => {
+        let category_ids
+        if (e.target.className === 'LookingForIds'){
+            category_ids = `${e.target.className.split('ForIds')[0]}_for_ids`
+        } else {
+            category_ids = `${e.target.className.split('Ids')[0]}_ids`
+        }
+        let array = [...this.state.profile[category_ids], i]
         debugger
-        let array = [...this.state[e.target.className], id]
         this.setState({
-            ...this.state, [e.target.className]: array 
+            // ...this.state.profile, [e.target.className]: array,
+
+            ...this.state, profile: {...this.state.profile, [category_ids]: array}, checked: e.target.checked
+
+
         })
     }
 
@@ -61,16 +77,26 @@ class ProfileForm extends Component{
     handleSubmit = (e) => {
         debugger
         e.preventDefault()
-        const userProfile = {...{username: this.props.user.username, id: this.props.user.id}, ...this.state}
-        this.props.addProfile(userProfile, this.props.history)
+        const userProfile = {...{username: this.props.user.username, id: this.props.user.id}, ...this.state.profile}
+        this.props.updateProfile(userProfile, this.props.history)
         this.props.history.push(`/users/${this.props.user.id}/profile`)
     }
+
+    // form = () => {
+    //     return this.state
+    // }
 
     // create separate component for checkboxes to clean up repetititon
     render() {
         return(
             // <ProfileFormComponent profile={this.state} handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}/>
             <>
+                {/* separate this out into category and checkboxes components */}
+                {categoriesArray.map(c => {
+                        return <> 
+                        <Category category={c} form={this.state} handleClick={this.handleClick.bind(this)}/>
+                        </>
+                    })}
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     {/* {categoriesArray.map(c => {
                         let categoryString = this.fixString(c)
@@ -87,29 +113,7 @@ class ProfileForm extends Component{
                             )}
                             </span>
                         </>
-                    })} */}
-
-                    {/* separate this out into category and checkboxes components */}
-                    {categoriesArray.map(c => {
-                        // let categoryString = this.fixString(c)
-                        return <> 
-                        <Category name={c.charAt(0).toUpperCase() + c.slice(1)} category={c} handleClick={this.handleClick.bind(this)}/>
-                            {/* <h3>{c.charAt(0).toUpperCase() + c.slice(1)}</h3>
-                            <span className='checkboxes'>
-                            // in category component:
-                            {this.props.profile[c] && this.props.profile[c].map(i =>  {  
-                                debugger 
-                                    return <>
-                                    // send props, copy/paste checkbox form input/label */}
-                                    {/* <Checkboxes handleClick={(e) => this.handleClick(e, i.id)}/>
-                                        <input type="checkbox" onClick={(e) => this.handleClick(e, i.id)} checked={this.state[categoryString].includes(i.id)} name={i.name} key={i.id} id={i.id} className={categoryString}/>
-                                        <label htmlFor={i.name}>{i.name}</label><br/>
-                                    </>
-                                }
-                            )}
-                            </span> */}
-                        </>
-                    })} 
+                    })} */} 
                     
                     {/* <h3>Pronouns</h3>
                     <span className='checkboxes'>
@@ -187,7 +191,7 @@ const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', '
 
 // const actions = {}
 
-export default connect(mapStateToProps, {addProfile, fetchCategories})(ProfileForm)
+export default connect(mapStateToProps, {updateProfile, fetchCategories})(ProfileForm)
 
 
 

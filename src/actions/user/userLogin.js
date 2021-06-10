@@ -26,7 +26,7 @@ export default function userLogin(user, path, history){
         .then(r => r.json())
         // need error handling
         .then(u => {
-            dispatch({type: 'USER_SESSION', payload: u})
+            dispatch({type: 'UPDATE_USER', payload: u})
             history.push(`/users/${u.id}`)
         })
     }    

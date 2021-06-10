@@ -5,40 +5,70 @@ import {connect} from 'react-redux'
 class Checkboxes extends Component {
     constructor(props){
         super(props)
+        // let categoryIdsString
+        if (props.c === 'identity'){
+            categoryIdsString = `${props.c.split('ies')[0]}yIds`
+        } else if (props.c === 'statuses'){
+            categoryIdsString = `${props.c.split('es')[0]}Ids`
+        } else if (props.c === 'interests'){
+            categoryIdsString = `${props.c.split('s')[0]}stIds`
+        } else if (props.c === 'looking_fors'){
+            categoryIdsString = `${props.c.split('_fors')[0]}ForIds`
+        } else {
+            categoryIdsString = `${props.c.split('s')[0]}Ids`
+        }
         this.state = {
-            // using props in state only to send user data to checkboxes in this component
-            pronoun_ids: this.props.user.pronounIds || [],
-            identity_ids: this.props.user.identityIds || [],
-            interest_ids: this.props.user.interestIds || [],
-            looking_for_ids: this.props.user.lookingForIds || [],
-            politic_ids: this.props.user.politicIds || [],
-            status_ids: this.props.user.statusIds || []
+            checkedStatus: this.props.user[categoryIdsString] && this.props.user[categoryIdsString].includes(this.props.i.id) ? true : false,
+            categoryIdsString: categoryIdsString
         }
     }
 
-    handleClick = (e, id) => {
-        this.props.handleClick(e, id)
-    }
+    // componentDidMount(){
+    //     debugger
+    //     this.setState({
+    //         checkedStatus: this.props.user[this.props.c] !== undefined && this.props.user[this.props.c].some(x => x.name === this.props.i.name) ? true : false
+    //     })
+    // }
 
-    fixString = (category) => {
-        if (category.includes('ies')){
-            return categoryString = `${category.split('ies')[0]}y_ids`
-        } else if (category.includes('es') && !category.includes('est')){
-            return categoryString = `${category.split('es')[0]}_ids`
-        } else if (category.includes('ests')){
-            return categoryString = `${category.split('s')[0]}st_ids`
-            } else {
-            return categoryString = `${category.split('s')[0]}_ids`
+    componentDidUpdate(prevProps){
+        if (!prevProps.user.id && this.props.user[categoryIdsString] !== undefined && this.props.user[categoryIdsString].includes(this.props.i.id)){
+            debugger
+
+            this.setState({
+              checkedStatus: prevProps.form.checked
+            })
         }
     }
+
+    handleClick = (e, name) => {
+        debugger
+        this.setState({
+            checkedStatus: e.target.checked 
+        })
+        this.props.handleClick(e, name)
+    }
+
+    
+    // fixString = (category) => {
+    //     if (category.includes('ies')){
+    //         return categoryIdsString = `${category.split('ies')[0]}y_ids`
+    //     } else if (category.includes('es') && !category.includes('est')){
+    //         return categoryIdsString = `${category.split('es')[0]}_ids`
+    //     } else if (category.includes('ests')){
+    //         return categoryIdsString = `${category.split('s')[0]}st_ids`
+    //         } else {
+    //         return categoryIdsString = `${category.split('s')[0]}_ids`
+    //     }
+    // }
    
 
     render() {
-        debugger
-        {this.fixString(this.props.c)}
+        
         return ( 
             <>
-                <input type="checkbox" onClick={(e) => this.handleClick(e, this.props.i.id)} checked={this.state[categoryString].includes(this.props.i.id)} name={this.props.i.name} key={this.props.i.id} id={this.props.i.id} className={categoryString}/>
+                {/* need to figure out 'checked' */}
+                {/* <input type="checkbox" onClick={(e) => this.handleClick(e, this.props.i.name)}  name={this.props.i.name} key={this.props.i.id} id={this.props.i.id} className={this.props.c}/> */}
+                <input type="checkbox" onClick={(e) => this.handleClick(e, this.props.i.id)} checked={this.state.checkedStatus} name={this.props.i.name} key={this.props.i.id} id={this.props.i.id} className={this.state.categoryIdsString}/>                
                 <label htmlFor={this.props.i.name}>{this.props.i.name}</label><br/>
             </>
         )
@@ -46,6 +76,6 @@ class Checkboxes extends Component {
 }
 
 const mapStateToProps = (state) => {return {users: state.users, profile: state.profile, user: state.user}}
-let categoryString 
+let categoryIdsString 
 
 export default connect(mapStateToProps) (Checkboxes)

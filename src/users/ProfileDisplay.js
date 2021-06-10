@@ -6,7 +6,7 @@ import User from './User'
 function ProfileDisplay(props) {
     
     const userId = props.user.id
-
+debugger
     return(
         <>
         <User />

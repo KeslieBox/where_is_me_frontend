@@ -9,7 +9,7 @@ export default function userSignup(user) {
         })
         .then(r => r.json())
         .then(u => {
-            dispatch({type: 'USER_SESSION', payload: u})
+            dispatch({type: 'UPDATE_USER', payload: u})
         }) 
     }
 }

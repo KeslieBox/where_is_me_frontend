@@ -2,12 +2,15 @@ import {connect} from 'react-redux'
 import Checkboxes from './Checkboxes'
 
 function Category(props) {
+    debugger
+
+    const categoryName = props.category.charAt(0).toUpperCase() + props.category.slice(1)
     return (
         <>
-           <h3>{props.name}</h3>
+           <h3>{categoryName}</h3>
            {props.profile[props.category] && props.profile[props.category].map(i =>  {  
                 return <>
-                    <Checkboxes handleClick={props.handleClick} c={props.category} i={i}/>
+                    <Checkboxes handleClick={props.handleClick} c={props.category} i={i} form={props.form}/>
                 </>
             })} 
         </>
