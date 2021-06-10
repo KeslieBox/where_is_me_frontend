@@ -1,6 +1,8 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import {Route, Switch} from 'react-router-dom'
+import fetchCategories from '../actions/profile/fetchCategories'
+// import addProfile from '../actions/user/addProfile'
+
  
  class PreferencesForm extends Component {
     
@@ -41,19 +43,6 @@ import {Route, Switch} from 'react-router-dom'
         })
     }
 
-    // fixString = (category) => {
-    //     debugger
-    //     if (category.includes('ies')){
-    //         return `${category.split('ies')[0]}y_ids`
-    //     } else if (category.includes('es') && !category.includes('t')){
-    //         return`${category.split('es')[0]}_ids`
-    //     } else if (category.includes('ests')){
-    //         return  `${category.split('s')[0]}est_ids`
-    //         } else {
-    //         return `${category.split('s')[0]}_ids`
-    //     }
-    // }
-
     handleSubmit = (e) => {
         e.preventDefault()
         const userProfile = {...{username: this.props.user.username, id: this.props.user.id}, ...this.state}
@@ -63,21 +52,18 @@ import {Route, Switch} from 'react-router-dom'
 
     // create separate component for checkboxes to clean up repetititon
     render() {
+        debugger
         return(
             // <ProfileFormComponent profile={this.state} handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)}/>
             <>
                 <form onSubmit={this.handleSubmit.bind(this)}>
-
-                    <h3>Status</h3>
-                    <span className='checkboxes'>
-                        {/* display users who... */}
-                    {this.props.profile.statuses && this.props.profile.statuses.map(c =>  
-                        <>
-                            <input type="checkbox" onClick={(e) => this.handleClick(e, c.id)} checked={this.state.status_ids.includes(c.id)} name={c.name} key={c.id} id={c.id} className='status_ids'/>
-                            <label htmlFor={c.name}>{c.name}</label><br/>
-                        </>
-                    )}
-                    </span>
+{/*                     
+                    {this.props.users.map(u => {
+                        this.props.user.lookingForIds.every(id =>{
+                            debugger
+                            return u.lookingForIds.includes(id)
+                        })
+                    })} */}
 
                     <h3>Looking For</h3>
                     <span className='checkboxes'>
@@ -121,13 +107,13 @@ import {Route, Switch} from 'react-router-dom'
 
 
                     
-                    <input type="submit" value='Edit Profile'/>
+                    <input type="submit" value='Edit Preferences'/>
                 </form>
             </>
         )
     }
  }
 
- const mapStateToProps = (state) => { return {users: state.users, user: state.user, matches: state.matches }}
-
- export default connect(mapStateToProps)(PreferencesForm)
+ const mapStateToProps = (state) => {return {users: state.users, profile: state.profile, user: state.user}}
+ const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', 'interests', 'politics']
+ export default connect(mapStateToProps, {fetchCategories})(PreferencesForm)

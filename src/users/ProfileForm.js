@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import ProfileFormComponent from './ProfileFormComponent'
+import Category from './Category'
 import fetchCategories from '../actions/profile/fetchCategories'
 import addProfile from '../actions/user/addProfile'
 
@@ -37,6 +38,7 @@ class ProfileForm extends Component{
     }
 
     handleClick = (e, id) => {
+        debugger
         let array = [...this.state[e.target.className], id]
         this.setState({
             ...this.state, [e.target.className]: array 
@@ -57,6 +59,7 @@ class ProfileForm extends Component{
     // }
 
     handleSubmit = (e) => {
+        debugger
         e.preventDefault()
         const userProfile = {...{username: this.props.user.username, id: this.props.user.id}, ...this.state}
         this.props.addProfile(userProfile, this.props.history)
@@ -85,9 +88,30 @@ class ProfileForm extends Component{
                             </span>
                         </>
                     })} */}
+
+                    {/* separate this out into category and checkboxes components */}
+                    {categoriesArray.map(c => {
+                        // let categoryString = this.fixString(c)
+                        return <> 
+                        <Category name={c.charAt(0).toUpperCase() + c.slice(1)} category={c} handleClick={this.handleClick.bind(this)}/>
+                            {/* <h3>{c.charAt(0).toUpperCase() + c.slice(1)}</h3>
+                            <span className='checkboxes'>
+                            // in category component:
+                            {this.props.profile[c] && this.props.profile[c].map(i =>  {  
+                                debugger 
+                                    return <>
+                                    // send props, copy/paste checkbox form input/label */}
+                                    {/* <Checkboxes handleClick={(e) => this.handleClick(e, i.id)}/>
+                                        <input type="checkbox" onClick={(e) => this.handleClick(e, i.id)} checked={this.state[categoryString].includes(i.id)} name={i.name} key={i.id} id={i.id} className={categoryString}/>
+                                        <label htmlFor={i.name}>{i.name}</label><br/>
+                                    </>
+                                }
+                            )}
+                            </span> */}
+                        </>
+                    })} 
                     
-                    
-                    <h3>Pronouns</h3>
+                    {/* <h3>Pronouns</h3>
                     <span className='checkboxes'>
                     {this.props.profile.pronouns && this.props.profile.pronouns.map(c =>  {                            
                             return <>
@@ -146,7 +170,7 @@ class ProfileForm extends Component{
                             <label htmlFor={c.name}>{c.name}</label><br/>
                         </>
                     )}
-                    </span>
+                    </span> */}
 
 
                     

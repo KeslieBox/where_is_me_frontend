@@ -37,14 +37,6 @@ class UserForm extends Component{
     }
 
     handleSubmit = (user) => {
-        // if (this.props.match.path === '/login'){
-        //     this.props.userLogin(user, this.props.history)
-        // } else {
-        //     this.props.userSignup(user, this.props.history)
-        // }
-        // this.props.history.push(`/users/${this.props.user.id}`)
-
-        
         this.props.userLogin(user, this.props.match.path, this.props.history)
         this.props.history.push(`/users/${this.props.user.id}`)
 
@@ -56,8 +48,6 @@ class UserForm extends Component{
         )
     }
 }
-
-// const cachedUser = sessionStorage.getItem(this.state.username)
 
 const mapStateToProps = (state) => {return {users: state.users, user: state.user}}
 

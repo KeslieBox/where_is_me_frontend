@@ -7,6 +7,8 @@ import UserForm from './UserForm'
 import Prowl from './Prowl'
 import Matches from './Matches'
 import User from './User'
+import PreferencesDisplay from './PreferencesDisplay'
+import PreferencesForm from './PreferencesForm'
 import ProfileDisplay from './ProfileDisplay'
 import ProfileForm from './ProfileForm'
 import fetchUsers from '../actions/fetchUsers'
@@ -16,7 +18,7 @@ import { Component } from 'react'
 class UsersContainer extends Component{
 
   componentDidMount = async() => {
-    // fetching all users asychronously right now in order to control the order of fetch requests users/user 
+    // fetching all users asychronously right now in order to control the order of fetch requests for users/user 
     // in order to remove the current user after all the users have been fetched
     // should come up with a better solution later if the app were to grow
     await this.props.fetchUsers()
@@ -31,9 +33,10 @@ class UsersContainer extends Component{
     if (this.props.user.id && this.props.user.id !== storedID ) { //and doesn't equal current userID
       localStorage.setItem('userID', this.props.user.id);
     }
-    if (prevProps.users.length === 0 && this.props.users.length !== 0 && this.props.user.id){
-      // need to call dispatch
-    }
+    // alternative to async fetchusers
+    // if (prevProps.users.length === 0 && this.props.users.length !== 0 && this.props.user.id){
+    //   // need to call dispatch
+    // }
   }
   
   render() {
@@ -42,9 +45,10 @@ class UsersContainer extends Component{
           <Switch>
             <Route path={'/login'} render={(routerProps) => <UserForm {...routerProps}/>}/>
             <Route path={'/signup'} render={(routerProps) => <UserForm {...routerProps}/>}/>
-            <Route path='/users/:id/preferences' component={ProfileForm}/>
             <Route exact path="/prowl" render={(routerProps) => <Prowl {...routerProps} />}/>
             <Route exact path="/matches" render={(routerProps) => <Matches {...routerProps} />}/>
+            <Route path='/users/:id/preferences/form' component={PreferencesForm}/>
+            <Route path='/users/:id/preferences' render={(routerProps) => <PreferencesDisplay {...routerProps}/>}/>
             <Route path='/users/:id/profile/form' component={ProfileForm}/>
             <Route path='/users/:id/profile' render={(routerProps) => <ProfileDisplay {...routerProps}/>}/>
             <Route path='/users/:id' render={(routerProps) => <User {...routerProps}/>}/>

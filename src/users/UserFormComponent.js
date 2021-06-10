@@ -12,10 +12,6 @@ function UserFormComponent(props) {
         props.submitCallback(props.user)
     }
 
-    // handleClick = () => {
-    //     this.props.userLogin(user, this.props.match.path, this.props.history)
-    // }
-
     const path = props.history.location.pathname
     return(
         <>
@@ -26,9 +22,7 @@ function UserFormComponent(props) {
                 <input type="text" onChange={handleChange} name='password' value={props.user && props.user.password} /><br></br>
             
                 <input type="submit" value={path === '/login' ? 'Login' : 'Signup'}/> 
-            </form>
-            
-            {/* <button onClick={this.handleClick}>Signup</button> */}
+            </form>   
         </>
     )
 }
