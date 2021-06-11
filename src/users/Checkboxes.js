@@ -6,7 +6,7 @@ class Checkboxes extends Component {
     constructor(props){
         super(props)
         // let categoryIdsString
-        if (props.c === 'identity'){
+        if (props.c === 'identities'){
             categoryIdsString = `${props.c.split('ies')[0]}yIds`
         } else if (props.c === 'statuses'){
             categoryIdsString = `${props.c.split('es')[0]}Ids`
@@ -31,6 +31,7 @@ class Checkboxes extends Component {
     // }
 
     componentDidUpdate(prevProps){
+        debugger
         if (!prevProps.user.id && this.props.user[categoryIdsString] !== undefined && this.props.user[categoryIdsString].includes(this.props.i.id)){
             debugger
 

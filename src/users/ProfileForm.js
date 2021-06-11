@@ -45,7 +45,8 @@ class ProfileForm extends Component{
 
     handleClick = (e, i) => {
         let category_ids
-        if (e.target.className === 'LookingForIds'){
+        debugger
+        if (e.target.className === 'lookingForIds'){
             category_ids = `${e.target.className.split('ForIds')[0]}_for_ids`
         } else {
             category_ids = `${e.target.className.split('Ids')[0]}_ids`
@@ -95,6 +96,7 @@ class ProfileForm extends Component{
                 {categoriesArray.map(c => {
                         return <> 
                         <Category category={c} form={this.state} handleClick={this.handleClick.bind(this)}/>
+                        
                         </>
                     })}
                 <form onSubmit={this.handleSubmit.bind(this)}>
@@ -188,6 +190,7 @@ class ProfileForm extends Component{
 // do i need users?
 const mapStateToProps = (state) => {return {users: state.users, profile: state.profile, user: state.user}}
 const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', 'interests', 'politics']
+
 
 // const actions = {}
 
