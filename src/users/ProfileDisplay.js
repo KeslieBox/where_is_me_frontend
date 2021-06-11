@@ -7,10 +7,9 @@ import User from './User'
 class ProfileDisplay extends Component{
 
    componentDidUpdate(prevProps){
-      debugger
+      
    }
 
-    debugger
     render(){
       return(
          <>

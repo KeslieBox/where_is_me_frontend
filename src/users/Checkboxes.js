@@ -31,9 +31,7 @@ class Checkboxes extends Component {
     // }
 
     componentDidUpdate(prevProps){
-        debugger
         if (!prevProps.user.id && this.props.user[categoryIdsString] !== undefined && this.props.user[categoryIdsString].includes(this.props.i.id)){
-            debugger
 
             this.setState({
               checkedStatus: prevProps.form.checked
@@ -42,7 +40,7 @@ class Checkboxes extends Component {
     }
 
     handleClick = (e, name) => {
-        debugger
+        
         this.setState({
             checkedStatus: e.target.checked 
         })
