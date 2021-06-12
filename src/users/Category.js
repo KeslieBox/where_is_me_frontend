@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import Checkboxes from './Checkboxes'
+import Checkbox from './Checkbox'
 import {Component} from 'react'
 
 // class Category extends Component {
@@ -31,7 +31,7 @@ function Category(props){
                     return <>
                         {/* <tr> */}
                             {/* {loop through baby array} */}
-                            <Checkboxes key={i} handleClick={props.handleClick} c={props.category} i={instance} form={props.form}/>
+                            <Checkbox key={i} handleClick={props.handleClick} c={props.category} i={instance} form={props.form}/>
                         {/* </tr> */}
                     </>
             })} 

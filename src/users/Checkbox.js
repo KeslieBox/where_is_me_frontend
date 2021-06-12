@@ -1,27 +1,17 @@
 import React from 'react'
 import { Component } from 'react'
 import {connect} from 'react-redux'
+import fixString from './fixString'
 
-class Checkboxes extends Component {
+class Checkbox extends Component {
     constructor(props){
         super(props)
-        // let categoryIdsString
-        // if (props.c === 'identities'){
-        //     categoryIdsString = `${props.c.split('ies')[0]}yIds`
-        // } else if (props.c === 'statuses'){
-        //     categoryIdsString = `${props.c.split('es')[0]}Ids`
-        // } else if (props.c === 'interests'){
-        //     categoryIdsString = `${props.c.split('s')[0]}stIds`
-        // } else if (props.c === 'looking_fors'){
-        //     categoryIdsString = `${props.c.split('_fors')[0]}ForIds`
-        // } else {
-        //     categoryIdsString = `${props.c.split('s')[0]}Ids`
-        // }
 
-        this.fixString(props.c)
+        const categoryIdsString = () => fixString(props.c)
+        // this.fixString(props.c)
         this.state = {
-            checkedStatus: this.props.user[categoryIdsString] && this.props.user[categoryIdsString].includes(this.props.i.id) ? true : false,
-            categoryIdsString: categoryIdsString
+            checkedStatus: this.props.user[categoryIdsString()] && this.props.user[categoryIdsString()].includes(this.props.i.id) ? true : false,
+            categoryIdsString: categoryIdsString()
         }
     }
 
@@ -36,7 +26,7 @@ class Checkboxes extends Component {
         if (!prevProps.user.id && this.props.user[categoryIdsString] !== undefined && this.props.user[categoryIdsString].includes(this.props.i.id)){
 
             this.setState({
-              checkedStatus: prevProps.form.checked
+              checkedStatus: this.props.form.checked
             })
         }
     }
@@ -50,19 +40,19 @@ class Checkboxes extends Component {
     }
 
     
-    fixString = (category) => {
-        if (category === 'identities'){
-           return categoryIdsString = `${category.split('ies')[0]}yIds`
-        } else if (category === 'statuses'){
-           return categoryIdsString = `${category.split('es')[0]}Ids`
-        } else if (category === 'interests'){
-           return categoryIdsString = `${category.split('s')[0]}stIds`
-        } else if (category === 'looking_fors'){
-           return categoryIdsString = `${category.split('_fors')[0]}ForIds`
-        } else {
-           return categoryIdsString = `${category.split('s')[0]}Ids`
-        }
-    }
+    // fixString = (category) => {
+    //     if (category === 'identities'){
+    //        return categoryIdsString = `${category.split('ies')[0]}yIds`
+    //     } else if (category === 'statuses'){
+    //        return categoryIdsString = `${category.split('es')[0]}Ids`
+    //     } else if (category === 'interests'){
+    //        return categoryIdsString = `${category.split('s')[0]}stIds`
+    //     } else if (category === 'looking_fors'){
+    //        return categoryIdsString = `${category.split('_fors')[0]}ForIds`
+    //     } else {
+    //        return categoryIdsString = `${category.split('s')[0]}Ids`
+    //     }
+    // }
    
 
     render() {
@@ -81,4 +71,4 @@ class Checkboxes extends Component {
 const mapStateToProps = (state) => {return {users: state.users, profile: state.profile, user: state.user}}
 let categoryIdsString 
 
-export default connect(mapStateToProps) (Checkboxes)
+export default connect(mapStateToProps) (Checkbox)

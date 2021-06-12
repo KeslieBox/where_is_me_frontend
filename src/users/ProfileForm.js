@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import Category from './Category'
 import fetchCategories from '../actions/profile/fetchCategories'
 import updateProfile from '../actions/user/updateProfile'
+import fixString from './fixString'
 
 class ProfileForm extends Component{
     // local state to handle form input:
@@ -29,22 +30,22 @@ class ProfileForm extends Component{
     componentDidUpdate(prevProps){
         
         if (!prevProps.user.id && this.props.user.id){
-            debugger
             this.setState({
                 profile: {
-                    pronoun_ids: this.state.profile.pronoun_ids,
-                    identity_ids: this.state.profile.identity_ids,
-                    interest_ids: this.state.profile.interest_ids,
-                    looking_for_ids: this.state.profile.looking_for_ids,
-                    politic_ids: this.state.profile.politic_ids,
-                    status_ids: this.state.profile.status_ids
+                    pronoun_ids: this.props.user.pronounIds,
+                    identity_ids: this.props.user.identityIds,
+                    interest_ids: this.props.user.interestIds,
+                    looking_for_ids: this.props.user.lookingForIds,
+                    politic_ids: this.props.user.politicIds,
+                    status_ids: this.props.user.statusIds
 
-                    // pronoun_ids: this.props.user.pronounIds,
-                    // identity_ids: this.props.user.identityIds,
-                    // interest_ids: this.props.user.interestIds,
-                    // looking_for_ids: this.props.user.lookingForIds,
-                    // politic_ids: this.props.user.politicIds,
-                    // status_ids: this.props.user.statusIds
+                    // pronoun_ids: this.state.profile.pronoun_ids,
+                    // identity_ids: this.state.profile.identity_ids,
+                    // interest_ids: this.state.profile.interest_ids,
+                    // looking_for_ids: this.state.profile.looking_for_ids,
+                    // politic_ids: this.state.profile.politic_ids,
+                    // status_ids: this.state.profile.status_ids
+
               }
 
             })
@@ -60,28 +61,62 @@ class ProfileForm extends Component{
     }
 
     handleClick = (e, i) => {
-       const category_ids = this.category_ids(e)
+        category_ids = this.category_ids(e)
+        categoryIds = e.className
+
         let array = [...this.state.profile[category_ids], i]
         if(!this.state.profile[category_ids].includes(i)){
             this.setState({
                 ...this.state, profile: {...this.state.profile, [category_ids]: array}, checked: e.checked
             })
         }
+        
+
+        // if(!this.state.profile[category_ids].includes(i)){
+        //     const newState = {...this.state, profile: {...this.state.profile, [category_ids]: array}, checked: e.checked}
+        //     // const userProfile = {...{username: this.props.user.username, id: this.props.user.id}, ...this.state.profile}
+        //     this.setState(newState, () => {
+        //         const userProfile = {...{username: this.props.user.username, id: this.props.user.id}, ...newState.profile}
+        //         debugger
+        //         this.props.updateProfile(userProfile)
+        //         // if(this.state.profile[category_ids] === this.props.user[e.className]){}
+        //     })
+        // }
         if(e.checked === false){
             const indexI = this.state.profile[category_ids].indexOf(i)
             array = [...this.state.profile[category_ids].splice(indexI, 1)]
-            debugger
             this.setState({
                 ...this.state.profile[category_ids]
             })
         }
     }
 
+
     handleSubmit = (e) => {
+        debugger
         e.preventDefault()
         const userProfile = {...{username: this.props.user.username, id: this.props.user.id}, ...this.state.profile}
-        this.props.updateProfile(userProfile, this.props.history)
-        this.props.history.push(`/users/${this.props.user.id}/profile`)
+        this.props.updateProfile(userProfile)
+        // how to delay rendering profile page to wait for fetch request to finish updating user?
+        // const renderProfileDisplay = () => {
+            // if(this.props.user[categoryIds] === this.state.profile[category_ids]){
+                this.props.history.push(`/users/${this.props.user.id}/profile`)
+            // }
+        // }
+
+            // async function firstFunction(props){
+            //     debugger
+                // await this.props.updateProfile(userProfile)
+                // do something else here after firstFunction completes
+            // }
+    
+            // async function secondFunction(props){
+            //     debugger
+            //     await firstFunction(props)
+            //     debugger
+        
+        // renderProfileDisplay()
+        // this.props.history.push(`/users/${this.props.user.id}/profile`)
     }
 
     render() {
@@ -101,10 +136,10 @@ class ProfileForm extends Component{
     }
 }
 
-// do i need users?
-const mapStateToProps = (state) => {return {users: state.users, profile: state.profile, user: state.user}}
+const mapStateToProps = (state) => {return {profile: state.profile, user: state.user}}
 const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', 'interests', 'politics']
-
+let category_ids
+let categoryIds
 
 export default connect(mapStateToProps, {updateProfile, fetchCategories})(ProfileForm)
 
