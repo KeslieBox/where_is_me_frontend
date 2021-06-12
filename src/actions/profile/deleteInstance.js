@@ -1,6 +1,8 @@
-export default function updateProfile(user) {
+export default function deleteInstance(i, user) {
     debugger
+    //should this go to update the user's instance of this category?? how to do that
     return function (dispatch){
+        // what route do i send to?? patch request to user??
         fetch(`http://localhost:3000/users/${user.id}`, {
             method: 'PATCH',
             headers: {Accept: "application/json", "Content-Type": "application/json"},

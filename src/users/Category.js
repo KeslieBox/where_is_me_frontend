@@ -9,7 +9,7 @@ import {Component} from 'react'
 
 function Category(props){
 
-    createRows = (category) => {
+    const createRows = (category) => {
         debugger
         const array = []
         for(let x=0; x < category.length; x+2 ){
@@ -26,13 +26,13 @@ function Category(props){
            <h3>{categoryName}</h3>
             
             {/* create function that returns 'array' from above and pass in .props.profile to use in for loop in function*/}
-            {/* {props.profile[props.category] && createRows(props.profile[props.category]).map(i => { */}
-            {props.profile[props.category] && props.profile[props.category].map(i =>  { 
+            {/* {props.profile[props.category] && createRows(props.profile[props.category]).map((instance, i) => { */}
+            {props.profile[props.category] && props.profile[props.category].map((instance, i) =>  { 
                     return <>
-                        <tr>/
+                        {/* <tr> */}
                             {/* {loop through baby array} */}
-                            <Checkboxes handleClick={props.handleClick} c={props.category} i={i} form={props.form}/>
-                        </tr>/
+                            <Checkboxes key={i} handleClick={props.handleClick} c={props.category} i={instance} form={props.form}/>
+                        {/* </tr> */}
                     </>
             })} 
         </>

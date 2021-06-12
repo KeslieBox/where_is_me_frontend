@@ -1,6 +1,3 @@
-export default function userLogout(history){
-    // return function(dispatch){
-    //     dispatch({type: 'LOGOUT_USER'})
-    // }   
+export default function userLogout(){
     return {type: 'LOGOUT_USER'} 
 }

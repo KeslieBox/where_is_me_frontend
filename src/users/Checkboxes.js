@@ -44,7 +44,7 @@ class Checkboxes extends Component {
         this.setState({
             checkedStatus: e.target.checked 
         })
-        this.props.handleClick(e, name)
+        this.props.handleClick(e.target, name)
     }
 
     
