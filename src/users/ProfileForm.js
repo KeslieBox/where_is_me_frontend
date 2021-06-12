@@ -1,9 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import ProfileFormComponent from './ProfileFormComponent'
 import Category from './Category'
 import fetchCategories from '../actions/profile/fetchCategories'
-import deleteInstance from '../actions/profile/deleteInstance'
 import updateProfile from '../actions/user/updateProfile'
 
 class ProfileForm extends Component{
@@ -29,15 +27,24 @@ class ProfileForm extends Component{
     }
 
     componentDidUpdate(prevProps){
+        
         if (!prevProps.user.id && this.props.user.id){
+            debugger
             this.setState({
                 profile: {
-                    pronoun_ids: this.props.user.pronounIds,
-                    identity_ids: this.props.user.identityIds,
-                    interest_ids: this.props.user.interestIds,
-                    looking_for_ids: this.props.user.lookingForIds,
-                    politic_ids: this.props.user.politicIds,
-                    status_ids: this.props.user.statusIds
+                    pronoun_ids: this.state.profile.pronoun_ids,
+                    identity_ids: this.state.profile.identity_ids,
+                    interest_ids: this.state.profile.interest_ids,
+                    looking_for_ids: this.state.profile.looking_for_ids,
+                    politic_ids: this.state.profile.politic_ids,
+                    status_ids: this.state.profile.status_ids
+
+                    // pronoun_ids: this.props.user.pronounIds,
+                    // identity_ids: this.props.user.identityIds,
+                    // interest_ids: this.props.user.interestIds,
+                    // looking_for_ids: this.props.user.lookingForIds,
+                    // politic_ids: this.props.user.politicIds,
+                    // status_ids: this.props.user.statusIds
               }
 
             })
@@ -97,12 +104,9 @@ class ProfileForm extends Component{
 // do i need users?
 const mapStateToProps = (state) => {return {users: state.users, profile: state.profile, user: state.user}}
 const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', 'interests', 'politics']
-const categoriesCapitalized = ['pronouns', 'statuses', 'looking_fors', 'identities', 'interests', 'politics']
 
 
-// const actions = {}
-
-export default connect(mapStateToProps, {updateProfile, fetchCategories, deleteInstance})(ProfileForm)
+export default connect(mapStateToProps, {updateProfile, fetchCategories})(ProfileForm)
 
 
 
@@ -113,13 +117,3 @@ export default connect(mapStateToProps, {updateProfile, fetchCategories, deleteI
 //     return 0
 // })
 
-
-// table of checkboxes
-// for(let i = 0; i < this.props.pronouns.length; i++){
-    // <ProfileFormComponent onClick={this.handleClick} name="pronoun" value={profile.name} profile={profile} /> )}
-//     if(i % 4 === 0){
-//         tr = document.createElement('tr')
-//         tr.className = 'tr'
-//         table.appendChild(tr)
-//     }
-// }

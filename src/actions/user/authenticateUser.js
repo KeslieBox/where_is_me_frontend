@@ -10,7 +10,6 @@ export default function authenticateUser(id){
         // need error handling
         .then(u => {
             dispatch({type: 'UPDATE_USER', payload: u})
-            // history.push(`/users/${u.id}`)
         })
     }    
 }
