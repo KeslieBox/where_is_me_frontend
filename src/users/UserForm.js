@@ -36,7 +36,9 @@ class UserForm extends Component{
         })
     }
 
-    handleSubmit = (user) => {
+    handleSubmit = (user, e) => {
+        e.preventDefault()
+        debugger
         this.props.userLogin(user, this.props.match.path, this.props.history)
         this.props.history.push(`/users/${this.props.user.id}`)
 

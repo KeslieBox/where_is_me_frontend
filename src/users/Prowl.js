@@ -7,8 +7,11 @@ import addMatch from '../actions/user/addMatch'
 
     handleClick = (e) => {
         e.preventDefault()
+        const likedId = parseInt(e.target.id)
         debugger
-        this.props.addMatch(this.props.user.id, parseInt(e.target.id))
+        if (!this.props.user.liked.find(u => u.id === likedId) && this.props.user.id !== likedId) {
+            this.props.addMatch(this.props.user.id, likedId)
+        }
     }
 
     // users reducer when fetch all users when someone logs in, create case called logged in or all logged in to use throughout app
@@ -38,7 +41,6 @@ import addMatch from '../actions/user/addMatch'
     }
  }
 
- //  if user !== current user || seenProfiles does not already include user, seenProfiles.push(user)
 
  const mapStateToProps = (state) => { return {users: state.users, user: state.user, matches: state.matches }}
 

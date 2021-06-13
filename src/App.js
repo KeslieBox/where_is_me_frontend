@@ -1,4 +1,4 @@
-import NavBar from './NavBar'
+import NavBar from './navbar/NavBar'
 import UsersContainer from './users/UsersContainer'
 import {connect} from 'react-redux'
 // import {withRouter} from 'react-router-dom'
