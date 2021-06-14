@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import {connect} from 'react-redux'
-import {link} from './LinkStyle'
+import {link} from '../navbar/LinkStyle'
 import userLogout from '../actions/user/userLogout'
 
 

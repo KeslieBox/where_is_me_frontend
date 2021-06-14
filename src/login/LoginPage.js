@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import {link} from './LinkStyle'
+import {link} from '../navbar/LinkStyle'
 
 
 function LoginPage(props) {

@@ -43,21 +43,14 @@ class UserForm extends Component{
         e.preventDefault()
         debugger
         // checks if username and password are longer than 4 characters or if there is a user w/that info that is present in the users arrays
-        if(this.props.users.some(u => u.username === user.username)){
+        if(this.props.history.location.pathname === '/login' && this.props.users.some(u => u.username === user.username)){
             this.props.userLogin(user, this.props.match.path)
             this.props.history.push(`/users/${this.props.user.id}`)
-        } else {
-            this.setState({
-                username: user.username,
-                password: user.password
-            })
-            if (this.state.username.length > 4 && this.state.password.length > 4 && !this.props.users.some(u => u.username === user.username)){
-                this.props.userSignup(user)
-                debugger
-                this.props.history.push(`/users/${this.props.user.id}`)
-            }else { 
-                this.props.errorMessage()
-            }
+        } else if (this.state.username.length > 4 && this.state.password.length > 4 && !this.props.users.some(u => u.username === user.username)){
+            this.props.userSignup(user)
+            this.props.history.push(`/users/${this.props.user.id}`)
+        }else { 
+            this.props.errorMessage()
         }
 
     }
@@ -66,7 +59,7 @@ class UserForm extends Component{
         {if(this.props.user.error && this.props.user.error === 'error'){
             return (
                 <>
-                    <ErrorModal history={this.props.history} login={this.state}/>
+                    <ErrorModal history={this.props.history} login={this.state} users={this.props.users} user={this.props.user}/>
                     <UserFormComponent submitCallback={this.handleSubmit.bind(this)} history={this.props.history} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
                 </>
             )

@@ -24,10 +24,18 @@ debugger
                 <li>Password must be at least 4 characters</li>
             </ul>
         )
-    } else {
-        <ul>
-            <li>Invalid login, make sure your username and password are correct</li>
-        </ul>
+    }else if(props.users.some( u => u.username === props.user.username)) {
+        return (
+            <ul>
+                <li>That username already exists, please choose another</li>
+            </ul>
+        )
+    }else {
+        return (
+            <ul>
+                <li>Invalid login, please make sure your username & password have at least 4 characters</li>
+            </ul>
+        )
     }
 }
 

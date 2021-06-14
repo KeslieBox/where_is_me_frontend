@@ -3,7 +3,7 @@
 import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Home from './Home'
-import UserForm from './UserForm'
+import UserForm from '../login/UserForm'
 import Prowl from './Prowl'
 import Matches from './Matches'
 import User from './User'
@@ -37,14 +37,12 @@ class UsersContainer extends Component{
     debugger
     if (this.props.user.id && this.props.user.id !== storedID || this.props.user.id !== parseInt(storedID) ) { 
       localStorage.setItem('userID', this.props.user.id)
-      // call fetchNewMatches
-      // await this.props.fetchNewMatches()
     }
     // alternative to async fetchusers
-    if (prevProps.users.length === 0 && this.props.users.length !== 0 && this.props.user.id){
-    //   // need to call dispatch
-      await this.props.fetchUsers()
-    }
+    // if (prevProps.users.length === 0 && this.props.users.length !== 0 && this.props.user.id){
+    // //   // need to call dispatch
+    //   await this.props.fetchUsers()
+    // }
   }
   
   render() {
