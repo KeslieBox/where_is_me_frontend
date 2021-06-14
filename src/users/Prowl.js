@@ -1,9 +1,15 @@
 import { Component } from "react";
 import { connect } from "react-redux";
 import addMatch from '../actions/user/addMatch'
+import fetchUsers from '../actions/fetchUsers'
 
  
  class Prowl extends Component {
+
+    // componentDidMount = async() => {
+    //     debugger
+    //     await this.props.fetchUsers(this.props.user)
+    // }
 
     handleClick = (e) => {
         e.preventDefault()
@@ -21,21 +27,19 @@ import addMatch from '../actions/user/addMatch'
         //     debugger
         //     if (!seenProfiles.includes(u)) {seenProfiles.push(u)} 
         // })
+
+        const newMatches = this.props.users && this.props.users.filter(u => u.id !== this.props.user.id && !this.props.user.liked.some(user => user.id === u.id))
         return(
             <>
             <ul>
-                {/* {this.props.users && this.props.users.map(u => <><li key={u.id} >{u.username}</li> <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button></>)} */}
-                {/* to figure out how not to show the current user profile */}
-
-                {this.props.users && this.props.users.map(u => (
-                        <><li key={u.id}>{u.username}</li> 
+                {newMatches.map(u => {
+                    debugger
+                    return <>
+                        <li key={u.id}>{u.username}</li> 
                         <button id={u.id} onClick={(e) => this.handleClick(e)}>Like</button>
-                        </>
-                    )
-                )}
+                    </>
+                })}
             </ul>
-            {/* <Route exact path={`/users/${this.props.user.id}`} render={(routerProps) => <Matches {...routerProps} />}/> */}
-
             </>
         ) 
     }
@@ -44,4 +48,4 @@ import addMatch from '../actions/user/addMatch'
 
  const mapStateToProps = (state) => { return {users: state.users, user: state.user, matches: state.matches }}
 
- export default connect(mapStateToProps, {addMatch})(Prowl)
+ export default connect(mapStateToProps, {addMatch, fetchUsers})(Prowl)

@@ -15,8 +15,8 @@
 // }
 
 
-export default function userLogin(user, path, history){
-    
+export default function userLogin(user, path){
+    debugger
     return function(dispatch){
         fetch(`http://localhost:3000${path}`, {
             method: 'POST',

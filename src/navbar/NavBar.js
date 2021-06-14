@@ -15,7 +15,6 @@ import userLogout from '../actions/user/userLogout';
 // }
 
 const NavBar = (props) => {
-  debugger
   // need to create conditional for which links to show
   {if (!props.userId || props.userId === undefined) {
   return (

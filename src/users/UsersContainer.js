@@ -21,22 +21,30 @@ class UsersContainer extends Component{
     // fetching all users asychronously right now in order to control the order of fetch requests for users/user 
     // in order to remove the current user after all the users have been fetched
     // should come up with a better solution later if the app were to grow
+    debugger
     await this.props.fetchUsers()
-    let userID = localStorage.getItem('userID');
-    if (userID) {
-     this.props.authenticateUser(parseInt(userID))
+    let userID = localStorage.getItem('userID')
+    if (userID && userID !== undefined){
+      this.props.authenticateUser(parseInt(userID))
+    } else {
+      // how to render error modal??
+      // this.props.history.push(/)
     }
   }
 
-  componentDidUpdate(prevProps) {
-    let storedID = localStorage.getItem('userID');
-    if (this.props.user.id && this.props.user.id !== storedID ) { //and doesn't equal current userID
-      localStorage.setItem('userID', this.props.user.id);
+  componentDidUpdate = async(prevProps) => {
+    let storedID = localStorage.getItem('userID')
+    debugger
+    if (this.props.user.id && this.props.user.id !== storedID || this.props.user.id !== parseInt(storedID) ) { 
+      localStorage.setItem('userID', this.props.user.id)
+      // call fetchNewMatches
+      // await this.props.fetchNewMatches()
     }
     // alternative to async fetchusers
-    // if (prevProps.users.length === 0 && this.props.users.length !== 0 && this.props.user.id){
+    if (prevProps.users.length === 0 && this.props.users.length !== 0 && this.props.user.id){
     //   // need to call dispatch
-    // }
+      await this.props.fetchUsers()
+    }
   }
   
   render() {
