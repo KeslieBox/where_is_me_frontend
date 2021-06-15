@@ -1,11 +1,8 @@
-import { Component } from "react";
 import { connect } from "react-redux";
 import fetchCategories from '../actions/fetchCategories'
-// import addProfile from '../actions/user/addProfile'
 
-//  not an active feature yet
- class PreferencesForm extends Component {
-    
+
+//  not an active compo yetNOT AN ACTIVE COMPONENT YET!!! 
     constructor(props){
         super(props)
         this.state = {

@@ -1,3 +1,4 @@
+// navbar styling
 export const link = {
     width: '100px',
     padding: '12px',

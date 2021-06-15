@@ -1,7 +1,10 @@
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-// not an active feature yet
+
+
+// NOT AN ACTIVE COMPONENT YET!!!
+
 function PreferencesDisplay(props) {
     
     // want to get this from props when i figure it out

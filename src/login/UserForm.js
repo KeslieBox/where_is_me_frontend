@@ -51,19 +51,12 @@ class UserForm extends Component{
     }
 
     render() { 
-        // {if(this.props.user.error && this.props.user.error === 'error'){
-            return (
-                <>
-                    <UserFormComponent submitCallback={this.handleSubmit.bind(this)} history={this.props.history} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
-                    {this.props.user.error && this.props.user.error === 'error' ? <ErrorModal history={this.props.history} login={this.state} users={this.props.users} user={this.props.user}/> : ""}
-                </>
-            )
-        // } else {
-            // return(
-                // <UserFormComponent submitCallback={this.handleSubmit.bind(this)} history={this.props.history} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
-
-            // )
-        // }}
+        return (
+            <>
+                <UserFormComponent submitCallback={this.handleSubmit.bind(this)} history={this.props.history} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
+                {this.props.user.error && this.props.user.error === 'error' ? <ErrorModal history={this.props.history} login={this.state} users={this.props.users} user={this.props.user}/> : ""}
+            </>
+        )
     }
 }
 

@@ -32,11 +32,11 @@ class UserFormComponent extends Component {
     const path = this.props.history.location.pathname
     return(
         <>
-            <form onSubmit={this.handleSubmit}>
+            <form className='userForm' onSubmit={this.handleSubmit}>
                 <label>Username</label>
-                <input type="text" onChange={this.handleChange} name="username" value={this.state.username} /><br></br>
+                <input type="text" id='formInput' onChange={this.handleChange} name="username" value={this.state.username} /><br></br>
                 <label>Password</label>
-                <input type="text" onChange={this.handleChange} name='password' value={this.state.password} /><br></br>
+                <input type="text" id='formInput'  onChange={this.handleChange} name='password' value={this.state.password} /><br></br>
             
                 <input type="submit" value={path === '/login' ? 'Login' : 'Signup'}/> 
             </form>   

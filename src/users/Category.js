@@ -24,12 +24,12 @@ function Category(props){
             {/* {props.profile[props.category] && createRows(props.profile[props.category]).map((instance, i) => { */}
   
             {props.profile[props.category] && props.profile[props.category].map((instance, i) =>  { 
-                    return <>
+                    return <div classname='checkboxes'>
                         {/* <tr> */}
                             {/* {loop through baby array} */}
                             <Checkbox key={i} handleClick={props.handleClick} c={props.category} i={instance} form={props.form}/>
                         {/* </tr> */}
-                    </>
+                    </div>
             })} 
         </>
     )

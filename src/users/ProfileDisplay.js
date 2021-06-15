@@ -6,6 +6,8 @@ function ProfileDisplay(props) {
    return(
       <>
       <User />
+      <div id='profile'>
+      <h3>Edit Profile:</h3><br></br>
       <h3>Pronouns</h3>
          {props.user.pronouns && props.user.pronouns.map(p => <p key={p.id} id='profileContent' >{p.name}</p>)}
       <h3>Status</h3>
@@ -19,7 +21,8 @@ function ProfileDisplay(props) {
       <h3>Politics</h3>
          {props.user.politics && props.user.politics.map(p => <p key={p.id} id='profileContent'>{p.name}</p>)} 
 
-      <button> {<Link to={`/users/${props.user.id}/profile/form`}> Edit </Link> }</button>
+      <button> {<Link id='editButton' to={`/users/${props.user.id}/profile/form`}> Edit </Link> }</button>
+      </div>
       </>
    )
 }

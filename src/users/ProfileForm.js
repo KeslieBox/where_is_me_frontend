@@ -81,7 +81,7 @@ class ProfileForm extends Component{
                 {categoriesArray.map((c, i) => {
                     return <Category key={i} category={c} form={this.state} handleClick={this.handleClick.bind(this)}/>
                 })}
-                <form onSubmit={this.handleSubmit.bind(this)}>                  
+                <form id='profileForm' onSubmit={this.handleSubmit.bind(this)}>                  
                     <input type="submit" value='Edit Profile'/>
                 </form>
             </>
