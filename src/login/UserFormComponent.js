@@ -2,7 +2,6 @@ import { Component } from 'react'
 import {connect} from 'react-redux'
 import errorMessage from '../actions/user/errorMessage'
 
-// function UserFormComponent(props) {
 class UserFormComponent extends Component {
     constructor(props){
         super(props)
@@ -21,8 +20,7 @@ class UserFormComponent extends Component {
 
     handleSubmit = (e) => { 
         e.preventDefault()
-        debugger
-        // if users array does not include this user & signup info is invalid
+        // if fetching user sends error message && route is login && login is invalid
         if (this.props.user.message && this.props.history.location.pathname === '/login' && !this.state.username.length > 4 || !this.state.password.length > 4) {
             this.props.errorMessage()
         }else {
@@ -49,4 +47,4 @@ class UserFormComponent extends Component {
 
 const mapStateToProps = (state) => {return {users: state.users, user: state.user}}
 
-export default connect(mapStateToProps, {errorMessage}) (UserFormComponent)
+export default connect(mapStateToProps, {errorMessage})(UserFormComponent)

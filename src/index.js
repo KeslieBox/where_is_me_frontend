@@ -15,7 +15,7 @@ import './index.css'
 // do i need this?
 const initialState = {}
 
-// this sends these keys/values to store
+// this sends these keys/values to Redux state
 const combinedReducer = combineReducers({profile: profileReducer, users: usersReducer, user: userReducer})
 
 const store = createStore(combinedReducer, initialState, compose(applyMiddleware(thunk), composeWithDevTools()))
@@ -32,7 +32,3 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();

@@ -2,23 +2,23 @@
 // import User from './User'
 import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
-import Home from './Home'
-import UserForm from '../login/UserForm'
-import Prowl from './Prowl'
-import Matches from './Matches'
-import User from './User'
-import PreferencesDisplay from './PreferencesDisplay'
-import PreferencesForm from './PreferencesForm'
-import ProfileDisplay from './ProfileDisplay'
-import ProfileForm from './ProfileForm'
-import fetchUsers from '../actions/fetchUsers'
-import authenticateUser from '../actions/user/authenticateUser'
+import Home from './users/Home'
+import UserForm from './login/UserForm'
+import Prowl from './matches/Prowl'
+import Matches from './matches/Matches'
+import User from './users/User'
+import PreferencesDisplay from './matches/PreferencesDisplay'
+import PreferencesForm from './matches/PreferencesForm'
+import ProfileDisplay from './users/ProfileDisplay'
+import ProfileForm from './users/ProfileForm'
+import fetchUsers from './actions/fetchUsers'
+import authenticateUser from './actions/user/authenticateUser'
 import { Component } from 'react'
 
 class UsersContainer extends Component{
 
   componentDidMount = async() => {
-    // fetching all users asychronously right now in order to control the order of fetch requests for users/user 
+    // fetching all users asychronously in order to control the order of fetch requests for users before user 
     // in order to remove the current user after all the users have been fetched
     // should come up with a better solution later if the app were to grow
     debugger
@@ -26,10 +26,7 @@ class UsersContainer extends Component{
     let userID = localStorage.getItem('userID')
     if (userID && userID !== undefined){
       this.props.authenticateUser(parseInt(userID))
-    } else {
-      // how to render error modal??
-      // this.props.history.push(/)
-    }
+    } 
   }
 
   componentDidUpdate = async(prevProps) => {
@@ -41,7 +38,6 @@ class UsersContainer extends Component{
     // alternative to async fetchusers
     // if (prevProps.users.length === 0 && this.props.users.length !== 0 && this.props.user.id){
     // //   // need to call dispatch
-    //   await this.props.fetchUsers()
     // }
   }
   

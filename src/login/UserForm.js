@@ -4,7 +4,6 @@ import userSignup from '../actions/user/userSignup'
 import userLogin from '../actions/user/userLogin'
 import userLogout from '../actions/user/userLogout'
 import errorMessage from '../actions/user/errorMessage'
-import fetchUsers from '../actions/fetchUsers'
 import UserFormComponent from './UserFormComponent'
 import ErrorModal from './ErrorModal'
 
@@ -19,7 +18,6 @@ class UserForm extends Component{
     }
 
     componentDidMount(){
-        // do i want to handle logout here?
         if (this.props.user && this.props.user.id){
             localStorage.setItem('userID', '')
             this.props.userLogout()
@@ -41,8 +39,6 @@ class UserForm extends Component{
 
     handleSubmit = (user, e) => {
         e.preventDefault()
-        debugger
-        // checks if username and password are longer than 4 characters or if there is a user w/that info that is present in the users arrays
         if(this.props.history.location.pathname === '/login' && this.props.users.some(u => u.username === user.username)){
             this.props.userLogin(user, this.props.match.path)
             this.props.history.push(`/users/${this.props.user.id}`)
@@ -52,25 +48,25 @@ class UserForm extends Component{
         }else { 
             this.props.errorMessage()
         }
-
     }
 
     render() { 
-        {if(this.props.user.error && this.props.user.error === 'error'){
+        // {if(this.props.user.error && this.props.user.error === 'error'){
             return (
                 <>
-                    <ErrorModal history={this.props.history} login={this.state} users={this.props.users} user={this.props.user}/>
                     <UserFormComponent submitCallback={this.handleSubmit.bind(this)} history={this.props.history} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
+                    {this.props.user.error && this.props.user.error === 'error' ? <ErrorModal history={this.props.history} login={this.state} users={this.props.users} user={this.props.user}/> : ""}
                 </>
             )
-        }} 
-        return(
-            <UserFormComponent submitCallback={this.handleSubmit.bind(this)} history={this.props.history} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
+        // } else {
+            // return(
+                // <UserFormComponent submitCallback={this.handleSubmit.bind(this)} history={this.props.history} user={this.state} updateStateInParent={this.handleChange.bind(this)}/>
 
-        )
+            // )
+        // }}
     }
 }
 
 const mapStateToProps = (state) => {return {users: state.users, user: state.user}}
 
-export default connect(mapStateToProps, {userLogin, userLogout, userSignup, errorMessage, fetchUsers})(UserForm)
+export default connect(mapStateToProps, {userLogin, userLogout, userSignup, errorMessage})(UserForm)

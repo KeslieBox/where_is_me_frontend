@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import fetchCategories from '../actions/profile/fetchCategories'
+import fetchCategories from '../actions/fetchCategories'
 // import addProfile from '../actions/user/addProfile'
 
  

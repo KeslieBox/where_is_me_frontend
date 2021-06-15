@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Category from './Category'
-import fetchCategories from '../actions/profile/fetchCategories'
+import fetchCategories from '../actions/fetchCategories'
 import updateProfile from '../actions/user/updateProfile'
 
 class ProfileForm extends Component{

@@ -1,14 +1,14 @@
-// import { NavLink, withRouter } from 'react-router-dom';
 import {connect} from 'react-redux'
-import LoggedIn from '../login/LoggedIn'
-import LoginPage from '../login/LoginPage'
+import LoggedIn from './LoggedIn'
+import LoginPage from './LoginPage'
 import userLogout from '../actions/user/userLogout';
 
 const NavBar = (props) => {
+  debugger
   {if (!props.userId || props.userId === undefined) {
     return <LoginPage />
   }else {
-    return <LoggedIn userLogout={userLogout}/>
+    return <LoggedIn userId={props.userId} userLogout={userLogout}/>
   }}
 }
 

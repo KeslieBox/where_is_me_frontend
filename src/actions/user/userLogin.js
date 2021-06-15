@@ -24,7 +24,6 @@ export default function userLogin(user, path){
             body: JSON.stringify({user})
         })
         .then(r => r.json())
-        // need error handling
         .then(u => {
             dispatch({type: 'UPDATE_USER', payload: u})
         })
