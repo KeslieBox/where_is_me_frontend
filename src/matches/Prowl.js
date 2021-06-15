@@ -19,10 +19,9 @@ import fetchUsers from '../actions/fetchUsers'
         <>
         <ul>
             {newMatches.map(u => {
-                debugger
                 return <>
-                    <li key={u.id}>{u.username}</li> 
-                    <button id={u.id} onClick={(e) => handleClick(e)}>Like</button>
+                    <li key={u.id} className='prowl' >{u.username}</li> 
+                    <button id={'prowl'} onClick={(e) => handleClick(e)}>Like</button>
                 </>
             })}
         </ul>

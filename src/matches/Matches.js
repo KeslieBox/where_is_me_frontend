@@ -12,7 +12,6 @@ class Matches extends Component {
 
     // coding challenge: liked and mutual likes
     handleLiked = (e) => {
-        debugger
         this.setState({
             clicked: true,
             matches: this.props.user.liked
@@ -20,7 +19,6 @@ class Matches extends Component {
     }
 
     handleMatches = (e) => {
-        debugger
         this.setState({
             clicked: true,
             matches: this.props.user.mutualMatches
@@ -53,8 +51,8 @@ class Matches extends Component {
                 })}
                 
             </ul>
-            <button onClick={(e) => this.handleLiked(e)}>My Liked</button>
-            <button onClick={(e) => this.handleMatches(e)}>My Matches</button>
+            <button id='matchesButton1' onClick={(e) => this.handleLiked(e)}>My Liked</button>
+            <button id='matchesButton2' onClick={(e) => this.handleMatches(e)}>My Matches</button>
             </>
         ) 
     }

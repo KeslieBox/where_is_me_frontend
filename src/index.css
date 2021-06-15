@@ -151,3 +151,26 @@ input[type=checkbox]{
     margin-left: 79px;
     margin-top: 1px;
 }
+
+#prowl {
+    margin-left: 12%;
+    margin-top: 5%;
+    border-style: solid;
+}
+
+.prowl {
+    margin-left: 5%;
+    margin-top: 1%;
+    margin-bottom: -7.5%;
+}
+
+#matchesButton1 {
+    margin-left: 10%;
+    border-style: solid;
+}
+
+#matchesButton2 {
+    margin-left: 3%;
+    margin-top: 2%;
+    border-style: solid;
+}

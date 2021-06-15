@@ -9,7 +9,6 @@ export default function userSignup(user) {
         })
         .then(r => r.json())
         .then(u => {
-            debugger
             dispatch({type: 'UPDATE_USER', payload: u})
         }) 
     }
