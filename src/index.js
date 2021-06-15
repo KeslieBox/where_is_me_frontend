@@ -12,7 +12,6 @@ import thunk from 'redux-thunk'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 
-// do i need this?
 const initialState = {}
 
 // this sends these keys/values to Redux state

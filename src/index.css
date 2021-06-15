@@ -16,12 +16,6 @@
     /* slow gradient, no lines */
     /* background: linear-gradient(269deg, #ff007d, #1b18d8); */
     height: 47px;
-    padding-top: 0px;
-    width: '100px';
-    padding: '12px';
-    margin: '0 6px 6px';
-    text-decoration: 'none';
-    color: 'white';
 }
 
 element.style {

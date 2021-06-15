@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import fetchCategories from '../actions/fetchCategories'
 // import addProfile from '../actions/user/addProfile'
 
- 
+//  not an active feature yet
  class PreferencesForm extends Component {
     
     constructor(props){

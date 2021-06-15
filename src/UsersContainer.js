@@ -1,5 +1,3 @@
-// import Users from './Users'
-// import User from './User'
 import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import Home from './users/Home'
@@ -35,7 +33,7 @@ class UsersContainer extends Component{
     if (this.props.user.id && this.props.user.id !== storedID || this.props.user.id !== parseInt(storedID) ) { 
       localStorage.setItem('userID', this.props.user.id)
     }
-    // alternative to async fetchusers
+    // alternative to async fetchusers to work on
     // if (prevProps.users.length === 0 && this.props.users.length !== 0 && this.props.user.id){
     // //   // need to call dispatch
     // }
@@ -62,8 +60,6 @@ class UsersContainer extends Component{
   }
 }
 
-const mapStateToProps = (state) => {
-  return {users: state.users, user: state.user}
-}
+const mapStateToProps = (state) => { return {users: state.users, user: state.user}}
 
 export default connect(mapStateToProps, {fetchUsers, authenticateUser})(UsersContainer)

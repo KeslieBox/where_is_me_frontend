@@ -1,3 +1,4 @@
+// not currently using
 export default function fixString(category) {
     if (category === 'identities'){
        return `${category.split('ies')[0]}yIds`

@@ -36,13 +36,6 @@ class ProfileForm extends Component{
                     looking_for_ids: this.props.user.lookingForIds,
                     politic_ids: this.props.user.politicIds,
                     status_ids: this.props.user.statusIds
-
-                    // pronoun_ids: this.state.profile.pronoun_ids,
-                    // identity_ids: this.state.profile.identity_ids,
-                    // interest_ids: this.state.profile.interest_ids,
-                    // looking_for_ids: this.state.profile.looking_for_ids,
-                    // politic_ids: this.state.profile.politic_ids,
-                    // status_ids: this.state.profile.status_ids
                 }
             })
         }
@@ -102,11 +95,4 @@ const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', '
 export default connect(mapStateToProps, {updateProfile, fetchCategories})(ProfileForm)
 
 
-
-// alphabetize
-// Property.allProperties.sort((a, b) => {
-//     if (a.name < b.name) {return -1}
-//     if (a.name > b.name) {return 1}
-//     return 0
-// })
 

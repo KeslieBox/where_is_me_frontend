@@ -7,7 +7,6 @@ export default function addMatch(userId, matchId) {
         })
         .then(r => r.json())
         .then(m => {
-            // is this where i should add the user to the frontend match?
             dispatch({type: 'UPDATE_USER', payload: m})
         }) 
     }
