@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 function App(props) {
   return (
     <>
-      <NavBar userId={props.user.id}/>
+      {/* <NavBar userId={props.user.id}/> */}
       <UsersContainer />
     </>
   );

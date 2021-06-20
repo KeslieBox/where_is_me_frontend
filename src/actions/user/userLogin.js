@@ -1,21 +1,6 @@
-// export default function userLogin(user){
-//     debugger
-//     return function(dispatch){
-//         fetch('http://localhost:3000/login', {
-//             method: 'POST',
-//             headers: {Accept: "application/json", "Content-Type": "application/json"},
-//             body: JSON.stringify({user})
-//         })
-//         .then(r => r.json())
-//         // need error handling
-//         .then(u => {
-//             dispatch({type: 'USER_SESSION', payload: u})
-//         })
-//     }    
-// }
+import errorMessage from './errorMessage'
 
-
-export default function userLogin(user, path){
+export default function userLogin(user, path, history){
     return function(dispatch){
         fetch(`http://localhost:3000${path}`, {
             method: 'POST',
@@ -24,7 +9,12 @@ export default function userLogin(user, path){
         })
         .then(r => r.json())
         .then(u => {
-            dispatch({type: 'UPDATE_USER', payload: u})
+            debugger
+            if (u.message){
+                errorMessage()
+            } else {
+                dispatch({type: 'UPDATE_USER', payload: u})
+            }
         })
     }    
 }

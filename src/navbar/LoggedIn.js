@@ -26,6 +26,7 @@ function LoggedIn(props) {
           <NavLink
               to='/login'
               style={link}
+            //   onClick={() => props.userLogout()}
           >Logout</NavLink>
     </div>
     )

@@ -152,10 +152,40 @@ input[type=checkbox]{
     margin-top: 1px;
 }
 
-#prowl {
+/* #prowl {
     margin-left: 12%;
     margin-top: 5%;
     border-style: solid;
+} */
+
+
+
+#all{
+    margin-top: 0%;
+}
+
+dl, ol, ul {
+    margin-top: 7%;
+}
+
+#prowlLi {
+    margin-left: 9%;
+    margin-top: 0%;
+    margin-bottom: -5.5%;
+}
+
+#prowlSpan {
+    margin-left: 20%;
+    margin-bottom: 1%;
+    margin-top: -16%;
+}
+
+#likeButton{
+    margin-left: 10%;
+}
+
+#count{
+    margin-left: 3%;
 }
 
 .prowl {
@@ -163,6 +193,8 @@ input[type=checkbox]{
     margin-top: 1%;
     margin-bottom: -7.5%;
 }
+
+
 
 #matchesButton1 {
     margin-left: 10%;
@@ -173,4 +205,8 @@ input[type=checkbox]{
     margin-left: 3%;
     margin-top: 2%;
     border-style: solid;
+}
+
+#incrementLabel{
+    margin-left: 33%;
 }

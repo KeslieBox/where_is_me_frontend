@@ -8,6 +8,7 @@ export default function authenticateUser(id){
         })
         .then(r => r.json())
         .then(u => {
+            debugger
             dispatch({type: 'UPDATE_USER', payload: u})
         })
     }    

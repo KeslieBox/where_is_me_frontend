@@ -20,7 +20,7 @@ class UserForm extends Component{
     componentDidMount(){
         if (this.props.user && this.props.user.id){
             localStorage.setItem('userID', '')
-            this.props.userLogout()
+            // this.props.userLogout()
         }
     }
 
@@ -37,16 +37,16 @@ class UserForm extends Component{
         })
     }
 
-    handleSubmit = (user, e) => {
+    handleSubmit = async (user, e) => {
         e.preventDefault()
-        if(this.props.history.location.pathname === '/login' && this.props.users.some(u => u.username === user.username)){
-            this.props.userLogin(user, this.props.match.path)
+        if (this.props.history.location.pathname === '/login'){
+            await this.props.userLogin(user, this.props.match.path, this.props.history)
             this.props.history.push(`/users/${this.props.user.id}`)
-        } else if (this.state.username.length > 4 && this.state.password.length > 4 && !this.props.users.some(u => u.username === user.username)){
+        } else if (this.props.user.message){
+            this.props.errorMessage()
+        } else if (this.state.username.length > 4 && this.state.password.length > 4 && !this.props.user.id && this.props.user.history === '/signup'){
             this.props.userSignup(user)
             this.props.history.push(`/users/${this.props.user.id}`)
-        }else { 
-            this.props.errorMessage()
         }
     }
 

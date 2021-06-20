@@ -21,11 +21,12 @@ class UserFormComponent extends Component {
     handleSubmit = (e) => { 
         e.preventDefault()
         // if fetching user sends error message && route is login && login is invalid
-        if (this.props.user.message && this.props.history.location.pathname === '/login' && !this.state.username.length > 4 || !this.state.password.length > 4) {
-            this.props.errorMessage()
-        }else {
+        debugger
+        // if (this.props.user.message && this.props.history.location.pathname === '/login' && !this.state.username.length > 4 || !this.state.password.length > 4) {
+        //     this.props.errorMessage()
+        // }else {
             this.props.submitCallback(this.state, e)
-        }
+        // }
     }
 
     render() {

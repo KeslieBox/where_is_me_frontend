@@ -1,4 +1,8 @@
-export default function errorMessage(){
+export default function errorMessage(user){
     debugger
-    return {type: 'INVALID_LOGIN'}
+    return function(dispatch){
+        dispatch({type: 'INVALID_LOGIN'} )
+    }
+
+    // return {type: 'LOGOUT_USER'} 
 }

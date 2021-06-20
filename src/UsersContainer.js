@@ -1,6 +1,7 @@
 import {Route, Switch} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { Component } from 'react'
+import NavBar from './navbar/NavBar'
 import Home from './users/Home'
 import UserForm from './login/UserForm'
 import Prowl from './matches/Prowl'
@@ -20,9 +21,9 @@ class UsersContainer extends Component{
     // fetching all users asychronously in order to control the order of fetch requests for users before user 
     // in order to remove the current user after all the users have been fetched
     // should come up with a better solution later if the app were to grow
-    await this.props.fetchUsers()
+    this.props.fetchUsers()
     let userID = localStorage.getItem('userID')
-    if (userID && userID !== undefined){
+    if (userID && userID !== 'undefined'){
       this.props.authenticateUser(parseInt(userID))
     } 
   }
@@ -42,6 +43,7 @@ class UsersContainer extends Component{
     
     return (
       <>
+          <NavBar userId={this.props.user.id} history={this.props.history}/>
           <Switch>
             <Route path={'/login'} render={(routerProps) => <UserForm {...routerProps}/>}/>
             <Route path={'/signup'} render={(routerProps) => <UserForm {...routerProps}/>}/>
