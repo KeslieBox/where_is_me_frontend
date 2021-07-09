@@ -45,8 +45,8 @@ class Matches extends Component {
             <ul>                
                 {this.state.matches && this.state.matches.map(u => {
                     return <>
-                        <li key={u.id}>{u.username}, {this.state[u.id]} </li> 
-                        <button onClick={(e) => this.handleIncrement(u.id)}>+</button>
+                        <li key={u.id}>{u.username} {this.state[u.id]} </li> 
+                        {/* <button onClick={(e) => this.handleIncrement(u.id)}>+</button> */}
                     </>
                 })}
                 

@@ -31,7 +31,7 @@ a {
     text-decoration: none;
     background-color: transparent;
     display: table-cell;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 body {
@@ -165,7 +165,7 @@ input[type=checkbox]{
 }
 
 dl, ol, ul {
-    margin-top: 7%;
+    margin-top: 1%;
 }
 
 #prowlLi {
@@ -174,26 +174,19 @@ dl, ol, ul {
     margin-bottom: -5.5%;
 }
 
-#prowlSpan {
-    margin-left: 20%;
-    margin-bottom: 1%;
-    margin-top: -16%;
-}
 
-#likeButton{
-    margin-left: 10%;
+
+#likeButton {
+    margin-left: 2%;
+    border: solid;
+    padding: 0px;
+    padding-left: 2px;
+    padding-right: 3px;
 }
 
 #count{
     margin-left: 3%;
 }
-
-.prowl {
-    margin-left: 5%;
-    margin-top: 1%;
-    margin-bottom: -7.5%;
-}
-
 
 
 #matchesButton1 {

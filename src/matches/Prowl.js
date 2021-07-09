@@ -7,9 +7,9 @@ import addMatch from '../actions/user/addMatch'
 
     const [state, setState] = useState({input: 0})
 
-    const handleClick = (e) => {
+    const handleClick = (e, u) => {
         e.preventDefault()
-        const likedId = parseInt(e.target.id)
+        const likedId = parseInt(u.id)
         if (!props.user.liked.find(u => u.id === likedId) && props.user.id !== likedId) {
             props.addMatch(props.user.id, likedId)
         }
@@ -42,21 +42,21 @@ import addMatch from '../actions/user/addMatch'
     const newMatches = props.users && props.users.filter(u => u.id !== props.user.id && !props.user.liked.some(user => user.id === u.id))
     return(
         <>
-        <form>
+        {/* <form>
             <label id='incrementLabel'>Enter a number to increment here:</label>
             <input id='prowlIncrement' type="text" onChange={(e) => handleChange(e)}/>
-        </form>
+        </form> */}
         
         <ul>
             {newMatches.map(u => {
                 return <>
                     
-                    <li key={u.id}>{u.username}</li> 
-                    <button className='prowl' id={u.id} onClick={(e) => handleClick(e)}>Like</button>
-        
-                    <p>Count {state[u.id]}</p>
+                    <li key={u.id}>{u.username} 
+                    <button className='prowl' id='likeButton' onClick={(e) => handleClick(e, u)}>Like</button>
+                    </li>
+                    {/* <p>Count {state[u.id]}</p>
                     <button onClick={(e) => incrementCount(u.id)}>+</button>
-                    <button onClick={(e) => resetCount(u.id)}>Reset Count</button>
+                    <button onClick={(e) => resetCount(u.id)}>Reset Count</button> */}
                 </>
             })}
         </ul>
