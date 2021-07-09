@@ -23,6 +23,10 @@ function LoggedIn(props) {
               to='/matches'
               style={link}
           >Matches</NavLink>
+           <NavLink
+              to='/liked'
+              style={link}
+          >Liked</NavLink>
           <NavLink
               to='/login'
               style={link}

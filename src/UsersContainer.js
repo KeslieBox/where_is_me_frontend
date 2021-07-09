@@ -6,6 +6,7 @@ import Home from './users/Home'
 import UserForm from './login/UserForm'
 import Prowl from './matches/Prowl'
 import Matches from './matches/Matches'
+import Liked from './matches/Liked'
 import User from './users/User'
 import ProfileDisplay from './users/ProfileDisplay'
 import ProfileForm from './users/ProfileForm'
@@ -49,6 +50,7 @@ class UsersContainer extends Component{
             <Route path={'/signup'} render={(routerProps) => <UserForm {...routerProps}/>}/>
             <Route exact path="/prowl" render={(routerProps) => <Prowl {...routerProps} />}/>
             <Route exact path="/matches" render={(routerProps) => <Matches {...routerProps} />}/>
+            <Route exact path="/liked" render={(routerProps) => <Liked {...routerProps} />}/>
             {/* not using yet */}
             {/* <Route path='/users/:id/preferences/form' component={PreferencesForm}/> */}
             {/* <Route path='/users/:id/preferences' render={(routerProps) => <PreferencesDisplay {...routerProps}/>}/> */}
