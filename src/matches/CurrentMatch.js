@@ -82,30 +82,55 @@ import CarouselComponent from './CarouselComponent'
                                 <div id='matchProfile'>
                                     <h3 id='matchProHeader'>
                                     {newMatches[state.match].username}, 
-                                    {newMatches[state.match].pronouns.map(i => 
+                                    {newMatches[state.match].pronouns.length > 0 ? newMatches[state.match].pronouns.map(i => 
                                         <span>{i.name}</span>
-                                    )}
+                                    ) : ''}
                                     </h3>
-                                    <ul id='matchProLabel'>Status:</ul>
-                                        {newMatches[state.match].statuses.map(i => 
-                                            <li id='matchProLi'>{i.name}</li>
-                                        )}
-                                    <ul id='matchProLabel'>Identities:</ul>
-                                        {newMatches[state.match].identities.map(i => 
-                                            <li id='matchProLi'>{i.name}</li>
-                                        )}
-                                     <ul id='matchProLabel'>Looking For:</ul>
+                                    {newMatches[state.match].statuses.length > 0 ? 
+                                        <>
+                                        <ul id='matchProLabel'>Status:</ul>
+                                            {newMatches[state.match].statuses.map(i => 
+                                                <li id='matchProLi'>{i.name}</li>
+                                            )}
+                                        </>
+                                        : ''
+                                    }
+                                    {newMatches[state.match].identities.length > 0 ? 
+                                        <>
+                                        <ul id='matchProLabel'>Identities:</ul>
+                                            {newMatches[state.match].identities.map(i => 
+                                                <li id='matchProLi'>{i.name}</li>
+                                            )}
+                                        </>
+                                        : ''
+                                    }
+                                    {newMatches[state.match].lookingFors.length > 0 ? 
+                                        <>
+                                        <ul id='matchProLabel'>Looking For:</ul>
                                         {newMatches[state.match].lookingFors.map(i => 
                                             <li id='matchProLi'>{i.name}</li>
-                                        )}    
-                                    <ul id='matchProLabel'>Interests:</ul>
-                                        {newMatches[state.match].interests.map(i => 
-                                            <li id='matchProLi'>{i.name}</li>
                                         )} 
-                                     <ul id='matchProLabel'>Politics:</ul>
+                                        </>
+                                        : ''
+                                    }
+                                    {newMatches[state.match].interests.length > 0 ? 
+                                        <>
+                                        <ul id='matchProLabel'>Interests:</ul>
+                                            {newMatches[state.match].interests.map(i => 
+                                                <li id='matchProLi'>{i.name}</li>
+                                            )} 
+                                        </>
+                                        : ''
+                                    }
+                                    {newMatches[state.match].politics.length > 0 ? 
+                                        <>
+                                        <ul id='matchProLabel'>Politics:</ul>
                                         {newMatches[state.match].politics.map(i => 
                                             <li id='matchProLi'>{i.name}</li>
-                                        )}   
+                                        )} 
+                                        </>
+                                        : ''
+                                    }  
                                     <button id='likeButton' onClick={(e) => handleClick(e)}>Like</button>
                                 </div> 
                                 : ''

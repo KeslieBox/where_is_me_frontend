@@ -175,23 +175,26 @@ dl, ol, ul {
 }
 
 #matchProHeader {
-    margin-left: 0px;
+    margin-left: -39px;
+    margin-top: -24px;
+    margin-bottom: 23px;
 }
 
-
 #matchProLabel {
-    text-align: left;
-    
+    text-align: left;   
+    margin-bottom: 8px;
 }
 
 #matchProLi {
     text-align: left;
     margin-left: 10%;
+    margin-top: -12px;
+    margin-bottom: 6px;
 }
 
 #matchProfile {
-    margin-left: 25%;
-    margin-top: 4%;
+    margin-left: 29%;
+    margin-top: 0%;
     margin-right: 31%;
     border-color: white;
     border-width: thick;
@@ -203,7 +206,8 @@ dl, ol, ul {
 }
 
 #likeButton {
-    margin-left: 2%;
+    margin-left: 70%;
+    margin-top: 0px;
     border: solid;
     padding: 0px;
     padding-left: 2px;
