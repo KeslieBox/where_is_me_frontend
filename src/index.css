@@ -174,7 +174,33 @@ dl, ol, ul {
     margin-bottom: -5.5%;
 }
 
+#matchProHeader {
+    margin-left: 0px;
+}
 
+
+#matchProLabel {
+    text-align: left;
+    
+}
+
+#matchProLi {
+    text-align: left;
+    margin-left: 10%;
+}
+
+#matchProfile {
+    margin-left: 25%;
+    margin-top: 4%;
+    margin-right: 31%;
+    border-color: white;
+    border-width: thick;
+    border-style: solid;
+    background: linear-gradient( 45deg, #cc02fa9c, #1b18d88c);
+    padding-left: 38px;
+    padding-bottom: 30px;
+    padding-top: 31px;
+}
 
 #likeButton {
     margin-left: 2%;

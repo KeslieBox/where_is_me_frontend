@@ -7,6 +7,8 @@ import UserForm from './login/UserForm'
 import Prowl from './matches/Prowl'
 import Matches from './matches/Matches'
 import Liked from './matches/Liked'
+import CurrentMatch from './matches/CurrentMatch'
+import CarouselComponent from './matches/CarouselComponent'
 import User from './users/User'
 import ProfileDisplay from './users/ProfileDisplay'
 import ProfileForm from './users/ProfileForm'
@@ -51,6 +53,7 @@ class UsersContainer extends Component{
             <Route exact path="/prowl" render={(routerProps) => <Prowl {...routerProps} />}/>
             <Route exact path="/matches" render={(routerProps) => <Matches {...routerProps} />}/>
             <Route exact path="/liked" render={(routerProps) => <Liked {...routerProps} />}/>
+            <Route exact path="/carousel" render={(routerProps) => <CurrentMatch {...routerProps} />}/>
             {/* not using yet */}
             {/* <Route path='/users/:id/preferences/form' component={PreferencesForm}/> */}
             {/* <Route path='/users/:id/preferences' render={(routerProps) => <PreferencesDisplay {...routerProps}/>}/> */}

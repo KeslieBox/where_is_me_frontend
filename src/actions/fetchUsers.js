@@ -3,7 +3,6 @@ export default function fetchUsers(user) {
         return fetch('http://localhost:3000/users/')
         .then(r => r.json())
         .then(users => {
-            debugger
             dispatch({type: 'FETCH_USERS', payload: users, user})
         })
     }

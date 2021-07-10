@@ -9,7 +9,6 @@ export default function userLogin(user, path, history){
         })
         .then(r => r.json())
         .then(u => {
-            debugger
             if (u.message){
                 errorMessage()
             } else {

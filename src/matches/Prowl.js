@@ -52,7 +52,7 @@ import addMatch from '../actions/user/addMatch'
                 return <>
                     
                     <li key={u.id}>{u.username} 
-                    <button className='prowl' id='likeButton' onClick={(e) => handleClick(e, u)}>Like</button>
+                    <button id='likeButton' onClick={(e) => handleClick(e, u)}>Like</button>
                     </li>
                     {/* <p>Count {state[u.id]}</p>
                     <button onClick={(e) => incrementCount(u.id)}>+</button>

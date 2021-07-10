@@ -14,7 +14,6 @@ export default function updateProfile(user) {
         })
         .then(u => {
             console.log('update action')
-            debugger
             dispatch({type: 'UPDATE_USER', payload: u})
         }) 
         .catch((error) => {
