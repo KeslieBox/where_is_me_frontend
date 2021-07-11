@@ -2,7 +2,7 @@ import Carousel from 'react-bootstrap/Carousel'
 import {useState} from 'react'
 import { connect } from "react-redux";
 import addMatch from '../actions/user/addMatch'
-import CurrentMatch from './CurrentMatch'
+import MatchBank from './CurrentMatch'
 
 function CarouselComponent(props) {
     debugger
@@ -35,7 +35,7 @@ function CarouselComponent(props) {
 
             // {/* {newMatches.map(u => {
             //     debugger
-            //     return <CurrentMatch user={u} />
+            //     return <MatchBank user={u} />
             // })} */}
             
           // {/* </Carousel.Caption> */}

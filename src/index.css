@@ -192,9 +192,9 @@ dl, ol, ul {
     margin-bottom: 6px;
 }
 
-#matchProfile {
+.matchProfile {
     margin-left: 29%;
-    margin-top: 0%;
+    margin-top: 2%;
     margin-right: 31%;
     border-color: white;
     border-width: thick;
@@ -206,12 +206,21 @@ dl, ol, ul {
 }
 
 #likeButton {
-    margin-left: 70%;
+    margin-left: 1%;
     margin-top: 0px;
     border: solid;
-    padding: 0px;
-    padding-left: 2px;
-    padding-right: 3px;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    position: absolute;
+}
+
+#nextButton {
+    margin-left: 56%;
+    border: solid;
+    padding-top: 0px;
+    padding-bottom: 2px;
+    margin-top: 0%;
+    position: relative;
 }
 
 #count{

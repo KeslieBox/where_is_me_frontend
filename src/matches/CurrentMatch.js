@@ -8,11 +8,23 @@ import CarouselComponent from './CarouselComponent'
  
  function CurrentMatch (props){
 
-    const [index, setIndex] = useState(0);
+    // const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState({slide: 0});
     const [state, setState] = useState({match: 0})
   
+    // const handleSelect = (selectedIndex, e) => {
+    //     debugger
+    //   setIndex(selectedIndex);
+    // }
+
     const handleSelect = (selectedIndex, e) => {
-      setIndex(selectedIndex);
+        setIndex(prevIndex => {
+           if(newMatches[prevIndex.slide] !== undefined){
+                    return {...prevIndex.slide, slide: prevIndex.slide + 1}
+            }else {
+                return {...prevIndex, slide: 0}
+            }
+        })
     }
 
     const handleClick = (e) => {
@@ -23,20 +35,8 @@ import CarouselComponent from './CarouselComponent'
         }
     }
 
-    const nextMatch = (e, id) => {
-        debugger
-        setState(prevState => {
-            debugger
-            if(newMatches[prevState.match] !== undefined){
-                return {...prevState, match: prevState.match + 1}
-            }else {
-                return {...prevState, match: 0}
-            }
-        })
-    }
-
     const newMatches = props.users && props.users.filter(u => u.id !== props.user.id && !props.user.liked.some(user => user.id === u.id))
-    debugger
+    
     return(
         // <>
         // <p key={props.user.id}> {props.user.username} 
@@ -70,72 +70,80 @@ import CarouselComponent from './CarouselComponent'
 
         
         {/* </Carousel> */}
-                
-                <button onClick={(e) => nextMatch(e, state.match)}>next</button>
-                 <Carousel> 
-                    <Carousel.Item>
+                <div>
+                {/* <button id='nextButton' onClick={(e) => handleSelect(e, index.slide)}> {'not my type >>'} </button> */}
+                </div>
+                 {/* <Carousel onSelect={handleSelect}>  */}
+                    {/* <Carousel.Item> */}
                     {/* <Carousel.Caption> */}
                     {/* <CarouselComponent i={i} u={u} /> */}
-                    {/* <p> hi */}
-                        <p key={newMatches[state.match] !== undefined ? newMatches[state.match].id : ''}> 
-                            {newMatches[state.match] !== undefined ?  
-                                <div id='matchProfile'>
+                        <p key={newMatches[index.slide] !== undefined ? newMatches[index.slide].id : ''}> 
+                            {newMatches[index.slide] !== undefined ?  
+                                <div className='matchProfile'>
                                     <h3 id='matchProHeader'>
-                                    {newMatches[state.match].username}, 
-                                    {newMatches[state.match].pronouns.length > 0 ? newMatches[state.match].pronouns.map(i => 
-                                        <span>{i.name}</span>
-                                    ) : ''}
+                                    {newMatches[index.slide].username}
                                     </h3>
-                                    {newMatches[state.match].statuses.length > 0 ? 
+                                    {newMatches[index.slide].pronouns.length > 0 ? 
+                                        <>
+                                        <ul id='matchProLabel'>Pronouns:</ul>
+                                            {newMatches[index.slide].pronouns.map(i => 
+                                                <li id='matchProLi'>{i.name}</li>
+                                            )}
+                                        </> 
+                                        : ''
+                                    }
+                                    {newMatches[index.slide].statuses.length > 0 ? 
                                         <>
                                         <ul id='matchProLabel'>Status:</ul>
-                                            {newMatches[state.match].statuses.map(i => 
+                                            {newMatches[index.slide].statuses.map(i => 
                                                 <li id='matchProLi'>{i.name}</li>
                                             )}
                                         </>
                                         : ''
                                     }
-                                    {newMatches[state.match].identities.length > 0 ? 
+                                    {newMatches[index.slide].identities.length > 0 ? 
                                         <>
-                                        <ul id='matchProLabel'>Identities:</ul>
-                                            {newMatches[state.match].identities.map(i => 
+                                        <ul id='matchProLabel'>Identity:</ul>
+                                            {newMatches[index.slide].identities.map(i => 
                                                 <li id='matchProLi'>{i.name}</li>
                                             )}
                                         </>
                                         : ''
                                     }
-                                    {newMatches[state.match].lookingFors.length > 0 ? 
+                                    {newMatches[index.slide].lookingFors.length > 0 ? 
                                         <>
                                         <ul id='matchProLabel'>Looking For:</ul>
-                                        {newMatches[state.match].lookingFors.map(i => 
+                                        {newMatches[index.slide].lookingFors.map(i => 
                                             <li id='matchProLi'>{i.name}</li>
                                         )} 
                                         </>
                                         : ''
                                     }
-                                    {newMatches[state.match].interests.length > 0 ? 
+                                    {newMatches[index.slide].interests.length > 0 ? 
                                         <>
                                         <ul id='matchProLabel'>Interests:</ul>
-                                            {newMatches[state.match].interests.map(i => 
+                                            {newMatches[index.slide].interests.map(i => 
                                                 <li id='matchProLi'>{i.name}</li>
                                             )} 
                                         </>
                                         : ''
                                     }
-                                    {newMatches[state.match].politics.length > 0 ? 
+                                    {newMatches[index.slide].politics.length > 0 ? 
                                         <>
                                         <ul id='matchProLabel'>Politics:</ul>
-                                        {newMatches[state.match].politics.map(i => 
+                                        {newMatches[index.slide].politics.map(i => 
                                             <li id='matchProLi'>{i.name}</li>
                                         )} 
                                         </>
                                         : ''
-                                    }  
-                                    <button id='likeButton' onClick={(e) => handleClick(e)}>Like</button>
+                                    } 
+                                    {/* <span>/ */}
+                                    <button id='nextButton' onClick={(e) => handleSelect(e, index.slide)}> 👎 </button>                                     
+                                    <button id='likeButton' onClick={(e) => handleClick(e)}>👍</button>
+                                    {/* </span> */}
                                 </div> 
-                                : ''
+                                : <div className='matchProfile'> You're out of matches! Check back later! </div>
                             } 
-                            
                         </p>
                         
 
@@ -145,8 +153,8 @@ import CarouselComponent from './CarouselComponent'
                         })} */}
                         
                     {/* </Carousel.Caption> */}
-                    </Carousel.Item>
-            </Carousel> 
+                    {/* </Carousel.Item> */}
+            {/* </Carousel>  */}
             
             
             
