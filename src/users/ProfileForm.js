@@ -82,7 +82,7 @@ class ProfileForm extends Component{
                     return <Category key={i} category={c} form={this.state} handleClick={this.handleClick.bind(this)}/>
                 })}
                 <form id='profileForm' onSubmit={this.handleSubmit.bind(this)}>                  
-                    <input type="submit" value='Edit Profile'/>
+                    <input id='editFormButton' type="submit" value='Edit Profile'/>
                 </form>
             </>
         )

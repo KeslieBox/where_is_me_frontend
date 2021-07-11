@@ -9,6 +9,7 @@ class User extends Component {
     }
 
     render () {
+        debugger
         return(
             <>
             {this.props.user.id ? <h1>Welcome, {this.props.user && this.props.user.username}</h1> : ''}

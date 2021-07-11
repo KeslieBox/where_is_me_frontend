@@ -27,10 +27,6 @@ function LoggedIn(props) {
               to='/liked'
               style={link}
           >Liked</NavLink>
-           <NavLink
-              to='/carousel'
-              style={link}
-          >Carousel</NavLink>
           <NavLink
               to='/login'
               style={link}

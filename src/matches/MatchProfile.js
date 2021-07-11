@@ -1,0 +1,1 @@
+// link to this component from matches and liked for each match

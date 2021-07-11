@@ -56,7 +56,7 @@ class Checkbox extends Component {
                 {/* need to figure out 'checked' */}
                 {/* <input type="checkbox" onClick={(e) => this.handleClick(e, this.props.i.name)}  name={this.props.i.name} key={this.props.i.id} id={this.props.i.id} className={this.props.c}/> */}
                 <input type="checkbox" onChange={(e) => this.handleChange(e, this.props.i.id)} checked={this.state.checkedStatus} name={this.props.i.name} key={this.props.i.id} id={this.props.i.id} className={this.state.categoryIdsString}/>                
-                <label className='checboxLabel' htmlFor={this.props.i.name}>{this.props.i.name}</label><br/>
+                <label id='checkboxLabel' htmlFor={this.props.i.name}>{this.props.i.name}</label><br/>
             </>
         )
     }

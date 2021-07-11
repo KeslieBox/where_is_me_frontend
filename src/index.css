@@ -61,11 +61,14 @@ body {
     margin-top: 17px;
 }
 
+    
+
 .h3, h3 {
-    font-size: 1.75rem;
+    font-size: 20px;
     margin-left: 37px;
-    margin-top: 20px;
+    margin-top: 18px;
     padding-bottom: 1px;
+    margin-bottom: 0;
 }
 
 p {
@@ -78,6 +81,7 @@ p {
     margin-top: 0;
     margin-bottom: 1rem;
     text-align: left;
+    margin-left: 15%;
 }
 
 .userForm {
@@ -115,11 +119,23 @@ label {
     margin-top: 3%;
 }
 
+#editPro {
+    margin-top: -4%;
+    margin-bottom: -6%;
+    font-size: 26px;
+}
+
+    
+
+#profileLabel {
+    font-size: 20px;
+    margin-left: 3%;
+}
 
 #profile {
-    margin-left: 25%;
-    margin-top: 4%;
-    margin-right: 31%;
+    margin-left: 28%;
+    margin-top: 3%;
+    margin-right: 29%;
     border-color: white;
     border-width: thick;
     border-style: solid;
@@ -127,15 +143,26 @@ label {
     padding-left: 38px;
     padding-bottom: 30px;
     padding-top: 31px;
+    padding-right: 20px;
 }
 
 #editButton {
     padding-left: 3px;
+    padding-right: 3px;
     margin-left: 10%;
+    border: solid;
 }
 
 .checkboxes{
     margin-left: 10%;
+}
+
+#checkboxLabel {
+    display: inline-block;
+    margin-bottom: -4px;
+    padding-right: 8px;
+    padding-bottom: 4px;
+    font-size: 15px;   
 }
 
 input[type=checkbox] {
@@ -150,6 +177,16 @@ input[type=checkbox]{
     padding: 0;
     margin-left: 79px;
     margin-top: 1px;
+}
+
+#profileForm {
+    margin-top: -7%;
+    margin-left: 36%
+}
+
+#editFormButton {
+    margin-left: 30%;
+    border: solid
 }
 
 /* #prowl {

@@ -3,83 +3,104 @@ import {useState} from 'react'
 import addMatch from '../actions/user/addMatch'
 
  
- function Prowl (props){
+ function CurrentMatch (props){
 
-    const [state, setState] = useState({input: 0})
+    const [index, setIndex] = useState({slide: 0});
+    const newMatches = props.users && props.users.filter(u => u.id !== props.user.id && !props.user.liked.some(user => user.id === u.id))
+    const match = newMatches[index.slide]
 
-    const handleClick = (e, u) => {
-        e.preventDefault()
-        const likedId = parseInt(u.id)
-        if (!props.user.liked.find(u => u.id === likedId) && props.user.id !== likedId) {
-            props.addMatch(props.user.id, likedId)
-        }
-    }
-
-    const handleChange = (e) => {
-        if (typeof e.target.value === 'number' || typeof parseInt(e.target.value) === 'number'){
-            setState(prevState => {
-                return {...prevState, input: parseInt(e.target.value)}
-            })
-        }
-    }
-
-    const incrementCount = (id) => {
-        setState(prevState => {
-            if(prevState[id]){
-                return {...prevState, [id]: prevState[id] + prevState.input}
+    const handleSelect = (e) => {
+        setIndex(prevIndex => {
+           if(newMatches[prevIndex.slide] !== undefined){
+                    return {...prevIndex.slide, slide: prevIndex.slide + 1}
             }else {
-                return {...prevState, [id]: prevState.input}
+                return {...prevIndex, slide: 0}
             }
         })
     }
 
-    const resetCount = (id) => {
-        setState(prevState => {
-            return {...prevState, [id]: 0}
-        })
+    const handleClick = (e) => {
+        debugger
+        e.preventDefault()
+        const likedId = parseInt(match.id)
+        if (!props.user.liked.find(u => u.id === likedId) && props.user.id !== likedId) {
+            props.addMatch(props.user.id, likedId)
+        }
     }
-
-    const newMatches = props.users && props.users.filter(u => u.id !== props.user.id && !props.user.liked.some(user => user.id === u.id))
+    
     return(
         <>
-        {/* <form>
-            <label id='incrementLabel'>Enter a number to increment here:</label>
-            <input id='prowlIncrement' type="text" onChange={(e) => handleChange(e)}/>
-        </form> */}
-        
-        <ul>
-            {newMatches.map(u => {
-                return <>
-                    
-                    <li key={u.id}>{u.username} 
-                    <button id='likeButton' onClick={(e) => handleClick(e, u)}>Like</button>
-                    </li>
-                    {/* <p>Count {state[u.id]}</p>
-                    <button onClick={(e) => incrementCount(u.id)}>+</button>
-                    <button onClick={(e) => resetCount(u.id)}>Reset Count</button> */}
-                </>
-            })}
-        </ul>
+        <p key={match !== undefined ? match.id : ''}> 
+            {match !== undefined ?  
+                <div className='matchProfile'>
+                    <h3 id='matchProHeader'>
+                    {match.username}
+                    </h3>
+                    {match.pronouns.length > 0 ? 
+                        <>
+                        <ul id='matchProLabel'>Pronouns:</ul>
+                            {match.pronouns.map(i => 
+                                <li id='matchProLi'>{i.name}</li>
+                            )}
+                        </> 
+                        : ''
+                    }
+                    {match.statuses.length > 0 ? 
+                        <>
+                        <ul id='matchProLabel'>Status:</ul>
+                            {match.statuses.map(i => 
+                                <li id='matchProLi'>{i.name}</li>
+                            )}
+                        </>
+                        : ''
+                    }
+                    {match.identities.length > 0 ? 
+                        <>
+                        <ul id='matchProLabel'>Identity:</ul>
+                            {match.identities.map(i => 
+                                <li id='matchProLi'>{i.name}</li>
+                            )}
+                        </>
+                        : ''
+                    }
+                    {match.lookingFors.length > 0 ? 
+                        <>
+                        <ul id='matchProLabel'>Looking For:</ul>
+                        {match.lookingFors.map(i => 
+                            <li id='matchProLi'>{i.name}</li>
+                        )} 
+                        </>
+                        : ''
+                    }
+                    {match.interests.length > 0 ? 
+                        <>
+                        <ul id='matchProLabel'>Interests:</ul>
+                            {match.interests.map(i => 
+                                <li id='matchProLi'>{i.name}</li>
+                            )} 
+                        </>
+                        : ''
+                    }
+                    {match.politics.length > 0 ? 
+                        <>
+                        <ul id='matchProLabel'>Politics:</ul>
+                        {match.politics.map(i => 
+                            <li id='matchProLi'>{i.name}</li>
+                        )} 
+                        </>
+                        : ''
+                    } 
+                    <button id='nextButton' onClick={(e) => handleSelect(e)}> 👎 </button>                                     
+                    <button id='likeButton' onClick={(e) => handleClick(e)}> 👍 </button>
+                </div> 
+                : <div className='matchProfile'> You're all out of matches! Please check back later! </div>
+            } 
+        </p>   
         </>
-
-// {newMatches.map(u => {
-//     return <>
-//         <span>
-//         <li id='prowlLi' key={u.id}>{u.username}</li> 
-        
-//         <div id='countDiv'>
-//         <label htmlFor='count' id='prowlSpan'> Count {state[u.id]}</label>
-//         <button id='count' onClick={(e) => incrementCount(u.id)}>+</button>
-//         <button id='count' onClick={(e) => resetCount(u.id)}>Reset Count</button>
-//         <button className='prowl' id='likeButton' id={u.id} onClick={(e) => handleClick(e)}>Like</button>
-//         </div>
-//         </span>
-//     </>
-// })}
     ) 
  }
 
 
  const mapStateToProps = (state) => { return {users: state.users, user: state.user }}
 
- export default connect(mapStateToProps, {addMatch})(Prowl)
+ export default connect(mapStateToProps, {addMatch})(CurrentMatch)
