@@ -7,6 +7,7 @@ export default function addMatch(userId, matchId) {
         })
         .then(r => r.json())
         .then(m => {
+            debugger
             dispatch({type: 'UPDATE_USER', payload: m})
         }) 
     }
