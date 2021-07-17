@@ -1,11 +1,12 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import Category from './Category'
+import { Component } from "react";
+import { connect } from "react-redux";
 import fetchCategories from '../actions/fetchCategories'
-import updateProfile from '../actions/user/updateProfile'
+import Category from '../users/Category'
 
-class ProfileForm extends Component{
-    // local state to handle form input:
+
+//  NOT AN ACTIVE COMPONENT YET!!! 
+
+class PreferencesForm extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -57,8 +58,6 @@ class ProfileForm extends Component{
             this.setState({
                 ...this.state, profile: {...this.state.profile, [category_ids]: array}, checked: e.checked
             })
-            // fetch all users who have this shared category id, ie if there is a shared astrology interest, make fetch req to interests/astrology id and then use mutualInterests to display those matches
-            // if an interest is checked in, modify mutual matches on the prowl page to only include matches w shared interests or other category items
         }
         
         if(e.checked === false){
@@ -84,7 +83,7 @@ class ProfileForm extends Component{
                     return <Category key={i} category={c} form={this.state} handleClick={this.handleClick.bind(this)}/>
                 })}
                 <form id='profileForm' onSubmit={this.handleSubmit.bind(this)}>                  
-                    <input id='editFormButton' type="submit" value='Edit Profile'/>
+                    <input id='editFormButton' type="submit" value='Edit Preferences'/>
                 </form>
             </>
         )
@@ -94,7 +93,4 @@ class ProfileForm extends Component{
 const mapStateToProps = (state) => {return {profile: state.profile, user: state.user}}
 const categoriesArray = ['pronouns', 'statuses', 'looking_fors', 'identities', 'interests', 'politics']
 
-export default connect(mapStateToProps, {updateProfile, fetchCategories})(ProfileForm)
-
-
-
+ export default connect(mapStateToProps, {fetchCategories})(PreferencesForm)

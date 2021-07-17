@@ -1,3 +1,6 @@
 export default function userLogout(){
-    return {type: 'LOGOUT_USER'} 
+    debugger
+    return function(dispatch){
+        dispatch({type: 'LOGOUT_USER'})
+    }
 }

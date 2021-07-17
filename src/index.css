@@ -205,6 +205,15 @@ dl, ol, ul {
     margin-top: 1%;
 }
 
+#prefCheckboxLabel {
+    display: inline;
+    margin-bottom: -4px;
+    padding-right: 8px;
+    padding-bottom: 4px;
+    font-size: 15px;
+    margin-right: -79px;
+}
+
 #prowlLi {
     margin-left: 9%;
     margin-top: 0%;

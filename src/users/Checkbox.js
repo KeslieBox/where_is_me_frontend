@@ -25,12 +25,12 @@ class Checkbox extends Component {
         }
     }
 
-    handleChange = (e, name) => {
+    handleChange = (e, id) => {
         
         this.setState({
             checkedStatus: e.target.checked 
         })
-        this.props.handleClick(e.target, name)
+        this.props.handleClick(e.target, id)
     }
 
     

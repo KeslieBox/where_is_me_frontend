@@ -4,7 +4,8 @@ import LoginPage from './LoginPage'
 import userLogout from '../actions/user/userLogout';
 
 const NavBar = (props) => {
-  {if (!props.userId || props.userId === undefined) {
+  debugger
+  {if (!props.userId || props.userId === undefined || props.history && props.history.location.pathname === '/login') {
     return <LoginPage />
   }else {
     return <LoggedIn userId={props.userId} userLogout={userLogout}/>

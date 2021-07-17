@@ -2,17 +2,16 @@ import { NavLink } from 'react-router-dom'
 import {link} from '../navbar/LinkStyle'
 
 function LoggedIn(props) {
+
     return (
         <div className='navbar'>
           <NavLink
               to={`/users/${props.userId}/profile`}
-              // to='/profile'
               style={link}
           >Profile</NavLink>
-          {/* not using yet: 
-              <NavLink
+          {/* not using yet:  */}
+              {/* <NavLink
               to={`/users/${props.userId}/preferences`}
-              // to='/profile'
               style={link}
           >Preferences</NavLink> */}
           <NavLink
@@ -30,7 +29,7 @@ function LoggedIn(props) {
           <NavLink
               to='/login'
               style={link}
-            //   onClick={() => props.userLogout()}
+            //   onClick={() => handleLogout()}
           >Logout</NavLink>
     </div>
     )

@@ -20,7 +20,7 @@ class UserForm extends Component{
     componentDidMount(){
         if (this.props.user && this.props.user.id){
             localStorage.setItem('userID', '')
-            // this.props.userLogout()
+            this.props.userLogout()
         }
     }
 

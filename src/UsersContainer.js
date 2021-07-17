@@ -10,8 +10,8 @@ import Liked from './matches/Liked'
 import User from './users/User'
 import ProfileDisplay from './users/ProfileDisplay'
 import ProfileForm from './users/ProfileForm'
-// import PreferencesDisplay from './matches/PreferencesDisplay'
-// import PreferencesForm from './matches/PreferencesForm'
+import PreferencesDisplay from './matches/PreferencesDisplay'
+import PreferencesForm from './matches/PreferencesForm'
 import fetchUsers from './actions/fetchUsers'
 import authenticateUser from './actions/user/authenticateUser'
 
@@ -52,8 +52,8 @@ class UsersContainer extends Component{
             <Route exact path="/liked" render={(routerProps) => <Liked {...routerProps} />}/>
             <Route exact path="/prowl" render={(routerProps) => <Prowl {...routerProps} />}/>
             {/* not using yet */}
-            {/* <Route path='/users/:id/preferences/form' component={PreferencesForm}/> */}
-            {/* <Route path='/users/:id/preferences' render={(routerProps) => <PreferencesDisplay {...routerProps}/>}/> */}
+            <Route path='/users/:id/preferences/form' component={PreferencesForm}/>
+            <Route path='/users/:id/preferences' render={(routerProps) => <PreferencesDisplay {...routerProps}/>}/>
             <Route path='/users/:id/profile/form' component={ProfileForm}/>
             <Route path='/users/:id/profile' render={(routerProps) => <ProfileDisplay {...routerProps}/>}/>
             <Route path='/users/:id' render={(routerProps) => <User {...routerProps}/>}/>
